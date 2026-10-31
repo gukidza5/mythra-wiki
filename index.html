@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mythra Wiki</title>
+<meta name="description" content="ข้อมูลเซิร์ฟเวอร์ Mythra Online : Global — เรท เพดานสเตตัส และระบบเกม">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --side:#f7f7f8; --text:#1d1d20; --muted:#6b6b76; --line:#e6e6ea;
+  --accent:#c2410c; --accent-soft:#fff1e8; --card:#fafafb;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16161a; --side:#1c1c21; --text:#ececf1; --muted:#9a9aa6; --line:#2c2c33;
+    --accent:#fb923c; --accent-soft:#2a1d14; --card:#1e1e24;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16161a; --side:#1c1c21; --text:#ececf1; --muted:#9a9aa6; --line:#2c2c33;
+  --accent:#fb923c; --accent-soft:#2a1d14; --card:#1e1e24;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans Thai",system-ui,sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:0;z-index:10;height:60px;display:flex;align-items:center;gap:16px;padding:0 20px;background:var(--bg);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;white-space:nowrap}
+.brand span{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,#f97316,#7c3aed);color:#fff;font-size:15px}
+.search{flex:1;max-width:420px;margin:0 auto}
+.search input{width:100%;padding:8px 14px;border:1px solid var(--line);border-radius:10px;background:var(--side);color:var(--text);font:inherit;font-size:14px}
+#menuBtn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:4px 10px;font-size:18px;cursor:pointer}
+.wrap{display:grid;grid-template-columns:260px minmax(0,1fr) 220px;max-width:1400px;margin:0 auto}
+nav.side{position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto;padding:20px 14px;background:var(--side);border-right:1px solid var(--line)}
+nav.side h4{margin:18px 8px 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+nav.side a{display:block;padding:6px 10px;border-radius:8px;font-size:14px;color:var(--muted)}
+nav.side a:hover{background:var(--line);color:var(--text)}
+nav.side a.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+main{padding:0 48px 80px;min-width:0}
+.banner{margin:0 -48px 32px;height:200px;background:radial-gradient(circle at 20% 30%,#fb923c 0,transparent 45%),radial-gradient(circle at 80% 70%,#7c3aed 0,transparent 50%),linear-gradient(135deg,#1e1b4b,#7c2d12);display:grid;place-items:center;color:#fff;text-align:center}
+.banner b{font-size:44px;letter-spacing:.06em;text-shadow:0 4px 18px rgba(0,0,0,.5)}
+.banner small{display:block;font-size:15px;opacity:.85;letter-spacing:.2em}
+h1{font-size:32px;margin:0 0 6px}
+.lead{color:var(--muted);font-size:17px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px;padding-top:8px}
+h2 .hash{opacity:0;margin-left:6px;color:var(--muted);font-weight:400}
+h2:hover .hash{opacity:1}
+ul{padding-left:22px;margin:8px 0}
+li{margin:4px 0}
+table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:15px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:500;font-size:13px}
+td.num{font-variant-numeric:tabular-nums;font-weight:600;color:var(--accent)}
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--muted);margin:12px 0}
+aside.toc{position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto;padding:28px 16px;font-size:13px}
+aside.toc p{margin:0 0 8px;color:var(--muted);font-weight:600}
+aside.toc a{display:block;padding:4px 8px;color:var(--muted);border-left:2px solid var(--line)}
+aside.toc a.on{color:var(--accent);border-color:var(--accent)}
+.hide{display:none!important}
+footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media (max-width:1100px){.wrap{grid-template-columns:240px minmax(0,1fr)} aside.toc{display:none}}
+@media (max-width:760px){
+  #menuBtn{display:block}
+  .search{display:none}
+  .wrap{grid-template-columns:1fr}
+  nav.side{position:fixed;left:0;top:60px;width:260px;z-index:9;transform:translateX(-100%);transition:transform .2s}
+  nav.side.open{transform:none}
+  main{padding:0 16px 60px}
+  .banner{margin:0 -16px 24px;height:150px}
+  .banner b{font-size:32px}
+}
+</style>
+</head>
+<body>
+<header>
+  <button id="menuBtn" aria-label="เมนู">☰</button>
+  <a class="brand" href="#top"><span>M</span>Mythra Wiki</a>
+  <div class="search"><input id="q" type="search" placeholder="ค้นหา..." aria-label="ค้นหา"></div>
+</header>
+
+<div class="wrap" id="top">
+  <nav class="side" id="side">
+    <h4>เริ่มต้น</h4>
+    <a href="#info">ข้อมูลเซิร์ฟเวอร์ : Mythra</a>
+    <h4>ในหน้านี้</h4>
+    <a href="#limits">ข้อมูลเซิร์ฟ & ระบบเกม</a>
+    <a href="#mechanics">Mechanics & Gameplay</a>
+    <a href="#features">ระบบเด่น</a>
+    <a href="#exp">EXP & Job Rate</a>
+    <a href="#drop">Drop & Item Rate</a>
+    <a href="#mvp">Boss & MVP Rate</a>
+  </nav>
+
+  <main>
+    <div class="banner"><div><b>MYTHRA</b><small>ONLINE : GLOBAL</small></div></div>
+
+    <h1 id="info">ข้อมูลเซิร์ฟเวอร์ : Mythra</h1>
+    <p class="lead">Mythra Online : Global | Ragnarok สายฟาร์ม ไม่มี Pay-to-Win เรทเลเวลไว ตีบวกทะลุ +20</p>
+
+    <section data-s>
+    <h2 id="limits">🌟 ข้อมูลเซิร์ฟ & ระบบเกม<a class="hash" href="#limits">#</a></h2>
+    <table>
+      <tr><th>หัวข้อ</th><th>ค่า</th></tr>
+      <tr><td>Max Base / Job Level</td><td class="num">175 / 70 (Class 3)</td></tr>
+      <tr><td>Max Stats</td><td class="num">500</td></tr>
+      <tr><td>Max ASPD</td><td class="num">193 (Class 3) · 190 (อาชีพอื่น)</td></tr>
+      <tr><td>Max HP</td><td class="num">11,000,000</td></tr>
+      <tr><td>Max SP</td><td class="num">1,000,000</td></tr>
+      <tr><td>Max Party Member</td><td class="num">26</td></tr>
+      <tr><td>Max Guild Member</td><td class="num">36 (16 + สกิลขยายกิลด์)</td></tr>
+      <tr><td>Party Share Level</td><td class="num">ห่างกันไม่เกิน 15 เลเวล</td></tr>
+    </table>
+    </section>
+
+    <section data-s>
+    <h2 id="mechanics">⚔️ Mechanics & Gameplay<a class="hash" href="#mechanics">#</a></h2>
+    <ul>
+      <li>ค่าป้องกัน ธาตุ / เผ่า / ขนาด / ประเภท ใส่ได้สูงสุด <b>100%</b></li>
+      <li>ค่าป้องกัน <b>เผ่ามนุษย์ (Demi-Human)</b> สูงสุด <b>90%</b> — ตีกันใน PVP ไม่มีใครอมตะ</li>
+      <li>ตายแล้วเสีย EXP <b>5%</b> (ทั้ง Base และ Job)</li>
+      <li>ยิงธนูไม่เปลืองลูกธนู</li>
+      <li>ไม่มีโหมด PK ทั่วแผนที่ — ตีกันได้เฉพาะลาน PVP / WoE</li>
+      <li>ระบบให้อาหารสัตว์เลี้ยง และ Homunculus อัตโนมัติ</li>
+      <li>เปิดใช้ ร้านรับซื้อ (Buying Store), ค้นหาร้านค้า, ธนาคาร Zeny, Equip Switch, Roulette, Attendance เช็คชื่อรายวัน</li>
+      <li>เปิดร้านค้าแบบ Autotrade ได้ ออฟไลน์แล้วร้านยังขายต่อ</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="features">🔥 ระบบเด่น<a class="hash" href="#features">#</a></h2>
+    <ul>
+      <li><b>ตีบวกได้สูงสุด +20</b></li>
+      <li><b>ระบบ Charm</b> ชาร์มทั่วไป 250 แบบ + Overlevel 414 แบบ</li>
+      <li><b>World Boss</b> วันละ 2 รอบ เที่ยงวัน และเที่ยงคืน สุ่มโผล่กลางเมือง รุมตีรับรางวัล</li>
+      <li><b>Hot Map</b> ทุกชั่วโมง นาทีที่ 30 สุ่ม 1 แมพ — EXP x2 + Drop x2.5 นาน 20 นาที</li>
+      <li><b>Auction House</b> ประมูลของหายากที่ Auction Master (morocc 175,91) ปิดรอบทุกวัน 23:59 ประกาศเตือนทุก 30 นาที</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="exp">📈 EXP & Job Rate<a class="hash" href="#exp">#</a></h2>
+    <table>
+      <tr><th>ประเภท</th><th>เรท</th></tr>
+      <tr><td>Base EXP</td><td class="num">x350</td></tr>
+      <tr><td>Job EXP</td><td class="num">x350</td></tr>
+      <tr><td>MVP EXP</td><td class="num">x1</td></tr>
+    </table>
+    <div class="note">ตีมอนเป็นกลุ่มได้ EXP เพิ่ม 25% ต่อคนที่ช่วยตี (สูงสุด 12 คน)</div>
+    </section>
+
+    <section data-s>
+    <h2 id="drop">🎁 Drop & Item Rate<a class="hash" href="#drop">#</a></h2>
+    <table>
+      <tr><th>มอนปกติ</th><th>เรท</th></tr>
+      <tr><td>Etc (ของทั่วไป)</td><td class="num">x3</td></tr>
+      <tr><td>ยาฟื้นฟู (Healing)</td><td class="num">x2</td></tr>
+      <tr><td>ของใช้ (Usable)</td><td class="num">x3</td></tr>
+      <tr><td>Equip (อุปกรณ์)</td><td class="num">x10</td></tr>
+      <tr><td>Card</td><td class="num">x5 (0.01% → 0.05%)</td></tr>
+    </table>
+    <div class="note">ดรอปสูงสุดต่อชิ้นไม่เกิน 80%</div>
+    </section>
+
+    <section data-s>
+    <h2 id="mvp">👑 Boss & MVP Rate<a class="hash" href="#mvp">#</a></h2>
+    <table>
+      <tr><th>บอส / MVP</th><th>เรท</th></tr>
+      <tr><td>Etc / ยา / ของใช้ / Equip</td><td class="num">x1</td></tr>
+      <tr><td>Card</td><td class="num">x2</td></tr>
+      <tr><td>MVP Reward</td><td class="num">x1</td></tr>
+    </table>
+    </section>
+
+    <p id="empty" class="hide" style="color:var(--muted)">ไม่เจอหัวข้อที่ค้นหา</p>
+    <footer>Mythra Online : Global · ข้อมูลดึงจากค่าเซิร์ฟจริง อัปเดต 31 ต.ค. 2026</footer>
+  </main>
+
+  <aside class="toc"><p>ON THIS PAGE</p></aside>
+</div>
+
+<script>
+const sections=[...document.querySelectorAll('main h2')];
+const toc=document.querySelector('aside.toc');
+sections.forEach(h=>{const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.firstChild.textContent.trim();toc.appendChild(a)});
+const links=[...document.querySelectorAll('aside.toc a, nav.side a')];
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))})},{rootMargin:'-70px 0px -70% 0px'});
+sections.forEach(h=>io.observe(h));
+document.getElementById('menuBtn').onclick=()=>document.getElementById('side').classList.toggle('open');
+document.querySelectorAll('nav.side a').forEach(a=>a.addEventListener('click',()=>document.getElementById('side').classList.remove('open')));
+const q=document.getElementById('q');
+q.addEventListener('input',()=>{
+  const t=q.value.trim().toLowerCase();let n=0;
+  document.querySelectorAll('section[data-s]').forEach(s=>{const hit=!t||s.textContent.toLowerCase().includes(t);s.classList.toggle('hide',!hit);n+=hit});
+  document.getElementById('empty').classList.toggle('hide',n>0);
+});
+addEventListener('keydown',e=>{if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();q.focus()}});
+</script>
+</body>
+</html>
