@@ -1265,7 +1265,7 @@ function show(id,scroll){
   const t=p=>p.querySelector('h1').textContent;
   pager.innerHTML=(prev?`<a href="#${prev.id}"><small>ก่อนหน้า</small>${t(prev)}</a>`:'<span></span>')+(next?`<a class="next" href="#${next.id}"><small>ถัดไป</small>${t(next)}</a>`:'');
   document.title=(page===pages[0]?'':t(page)+' | ')+'Mythra Wiki';
-  if(scroll){const el=document.getElementById(id);if(el&&el!==page)el.scrollIntoView();else scrollTo(0,0)}
+  if(scroll){const el=document.getElementById(id);if(el&&el!==page)el.scrollIntoView();else requestAnimationFrame(()=>scrollTo(0,0))}
 }
 addEventListener('hashchange',()=>{q.value='';resetSearch();show(location.hash.slice(1),true)});
 document.getElementById('menuBtn').onclick=()=>document.getElementById('side').classList.toggle('open');
