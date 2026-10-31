@@ -4,28 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mythra Wiki</title>
-<meta name="description" content="ข้อมูลเซิร์ฟเวอร์ Mythra Online : Global — เรท เพดานสเตตัส และระบบเกม">
+<meta name="description" content="คู่มือเซิร์ฟเวอร์ Mythra Online : Global — เรท ระบบตีบวก ชาร์ม อีเวนต์ ดันเจี้ยน และบริการในเมือง">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#ffffff; --side:#f7f7f8; --text:#1d1d20; --muted:#6b6b76; --line:#e6e6ea;
-  --accent:#c2410c; --accent-soft:#fff1e8; --card:#fafafb;
+  --accent:#c2410c; --accent-soft:#fff1e8; --card:#fafafb; --warn:#b45309; --warn-soft:#fffbeb;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#16161a; --side:#1c1c21; --text:#ececf1; --muted:#9a9aa6; --line:#2c2c33;
-    --accent:#fb923c; --accent-soft:#2a1d14; --card:#1e1e24;
+    --accent:#fb923c; --accent-soft:#2a1d14; --card:#1e1e24; --warn:#fbbf24; --warn-soft:#2a2410;
   }
 }
 :root[data-theme="dark"]{
   --bg:#16161a; --side:#1c1c21; --text:#ececf1; --muted:#9a9aa6; --line:#2c2c33;
-  --accent:#fb923c; --accent-soft:#2a1d14; --card:#1e1e24;
+  --accent:#fb923c; --accent-soft:#2a1d14; --card:#1e1e24; --warn:#fbbf24; --warn-soft:#2a2410;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans Thai",system-ui,sans-serif;line-height:1.7}
 a{color:inherit;text-decoration:none}
+main a{color:var(--accent)}
 header{position:sticky;top:0;z-index:10;height:60px;display:flex;align-items:center;gap:16px;padding:0 20px;background:var(--bg);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;white-space:nowrap}
 .brand span{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,#f97316,#7c3aed);color:#fff;font-size:15px}
@@ -42,22 +43,42 @@ main{padding:0 48px 80px;min-width:0}
 .banner{margin:0 -48px 32px;height:200px;background:radial-gradient(circle at 20% 30%,#fb923c 0,transparent 45%),radial-gradient(circle at 80% 70%,#7c3aed 0,transparent 50%),linear-gradient(135deg,#1e1b4b,#7c2d12);display:grid;place-items:center;color:#fff;text-align:center}
 .banner b{font-size:44px;letter-spacing:.06em;text-shadow:0 4px 18px rgba(0,0,0,.5)}
 .banner small{display:block;font-size:15px;opacity:.85;letter-spacing:.2em}
-h1{font-size:32px;margin:0 0 6px}
+article{display:none;padding-top:28px}
+article.show{display:block}
+article.first{padding-top:0}
+.crumb{font-size:13px;color:var(--muted);margin:0 0 6px}
+h1{font-size:32px;margin:0 0 6px;line-height:1.3}
 .lead{color:var(--muted);font-size:17px;margin:0 0 28px}
 h2{font-size:22px;margin:40px 0 12px;padding-top:8px}
 h2 .hash{opacity:0;margin-left:6px;color:var(--muted);font-weight:400}
 h2:hover .hash{opacity:1}
-ul{padding-left:22px;margin:8px 0}
+h3{font-size:17px;margin:22px 0 6px}
+ul,ol{padding-left:22px;margin:8px 0}
 li{margin:4px 0}
-table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:15px}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
-th{color:var(--muted);font-weight:500;font-size:13px}
+.tw{overflow-x:auto;margin:8px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:13px;white-space:nowrap}
 td.num{font-variant-numeric:tabular-nums;font-weight:600;color:var(--accent)}
 .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--muted);margin:12px 0}
+.warn{background:var(--warn-soft);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:8px;padding:10px 14px;font-size:14px;margin:12px 0}
+.loc{display:inline-block;font-size:13px;padding:1px 8px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-weight:600;margin-right:4px;white-space:nowrap}
+.soon{display:inline-block;font-size:12px;padding:1px 8px;border-radius:6px;background:var(--line);color:var(--muted);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:16px 0}
+.grid a{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)}
+.grid a:hover{border-color:var(--accent)}
+.grid b{display:block;font-size:15px}
+.grid small{color:var(--muted);font-size:13px}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.92em;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:0 5px}
 aside.toc{position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto;padding:28px 16px;font-size:13px}
 aside.toc p{margin:0 0 8px;color:var(--muted);font-weight:600}
 aside.toc a{display:block;padding:4px 8px;color:var(--muted);border-left:2px solid var(--line)}
 aside.toc a.on{color:var(--accent);border-color:var(--accent)}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:48px}
+.pager a{flex:1;padding:12px 16px;border:1px solid var(--line);border-radius:10px;color:var(--text)}
+.pager a:hover{border-color:var(--accent)}
+.pager small{display:block;color:var(--muted);font-size:12px}
+.pager .next{text-align:right}
 .hide{display:none!important}
 footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 @media (max-width:1100px){.wrap{grid-template-columns:240px minmax(0,1fr)} aside.toc{display:none}}
@@ -70,132 +91,1175 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
   main{padding:0 16px 60px}
   .banner{margin:0 -16px 24px;height:150px}
   .banner b{font-size:32px}
+  h1{font-size:26px}
 }
 </style>
 </head>
 <body>
 <header>
   <button id="menuBtn" aria-label="เมนู">☰</button>
-  <a class="brand" href="#top"><span>M</span>Mythra Wiki</a>
-  <div class="search"><input id="q" type="search" placeholder="ค้นหา..." aria-label="ค้นหา"></div>
+  <a class="brand" href="#home"><span>M</span>Mythra Wiki</a>
+  <div class="search"><input id="q" type="search" placeholder="ค้นหาทั้งวิกิ... (Ctrl+K)" aria-label="ค้นหา"></div>
 </header>
 
 <div class="wrap" id="top">
   <nav class="side" id="side">
     <h4>เริ่มต้น</h4>
-    <a href="#info">ข้อมูลเซิร์ฟเวอร์ : Mythra</a>
-    <h4>ในหน้านี้</h4>
-    <a href="#limits">ข้อมูลเซิร์ฟ & ระบบเกม</a>
-    <a href="#mechanics">Mechanics & Gameplay</a>
-    <a href="#features">ระบบเด่น</a>
-    <a href="#exp">EXP & Job Rate</a>
-    <a href="#drop">Drop & Item Rate</a>
-    <a href="#mvp">Boss & MVP Rate</a>
+    <a href="#home">ข้อมูลเซิร์ฟเวอร์ & เรท</a>
+    <a href="#start">เริ่มเล่น & กติกา</a>
+    <a href="#commands">คำสั่งผู้เล่น</a>
+    <a href="#schedule">ตารางเวลาอีเวนต์</a>
+    <h4>อุปกรณ์</h4>
+    <a href="#refine">ระบบตีบวก</a>
+    <a href="#enchant">ออฟชั่น & เจาะรู</a>
+    <h4>พัฒนาตัวละคร</h4>
+    <a href="#charm">ระบบชาร์ม</a>
+    <a href="#growth">จุติ ยศ & สะสม</a>
+    <h4>กิจกรรม</h4>
+    <a href="#events">อีเวนต์</a>
+    <a href="#minigame">มินิเกม</a>
+    <a href="#dungeon">เควส & ดันเจี้ยน</a>
+    <a href="#pvp">PvP · WoE · กิลด์</a>
+    <h4>เมือง & เศรษฐกิจ</h4>
+    <a href="#service">บริการในเมือง</a>
+    <a href="#shop">ร้านค้า & การ์ด</a>
+    <a href="#cash">Cash · VIP · Member</a>
   </nav>
 
   <main>
     <div class="banner"><div><b>MYTHRA</b><small>ONLINE : GLOBAL</small></div></div>
 
-    <h1 id="info">ข้อมูลเซิร์ฟเวอร์ : Mythra</h1>
-    <p class="lead">Mythra Online : Global | Ragnarok สายฟาร์ม ไม่มี Pay-to-Win เรทเลเวลไว ตีบวกทะลุ +20</p>
+    <!-- ===================== HOME ===================== -->
+    <article id="home" class="first">
+    <p class="crumb">เริ่มต้น</p>
+    <h1>ข้อมูลเซิร์ฟเวอร์ : Mythra</h1>
+    <p class="lead">Mythra Online : Global | Ragnarok Renewal สายฟาร์ม เรทเลเวลไว ตีบวกได้ถึง +20 · เมืองหลัก Morocc</p>
 
     <section data-s>
     <h2 id="limits">🌟 ข้อมูลเซิร์ฟ & ระบบเกม<a class="hash" href="#limits">#</a></h2>
-    <table>
+    <div class="tw"><table>
       <tr><th>หัวข้อ</th><th>ค่า</th></tr>
       <tr><td>Max Base / Job Level</td><td class="num">175 / 70 (Class 3)</td></tr>
       <tr><td>Max Stats</td><td class="num">500</td></tr>
       <tr><td>Max ASPD</td><td class="num">193 (Class 3) · 190 (อาชีพอื่น)</td></tr>
-      <tr><td>Max HP</td><td class="num">11,000,000</td></tr>
-      <tr><td>Max SP</td><td class="num">1,000,000</td></tr>
+      <tr><td>Max HP / SP</td><td class="num">11,000,000 / 1,000,000</td></tr>
       <tr><td>Max Party Member</td><td class="num">26</td></tr>
       <tr><td>Max Guild Member</td><td class="num">36 (16 + สกิลขยายกิลด์)</td></tr>
       <tr><td>Party Share Level</td><td class="num">ห่างกันไม่เกิน 15 เลเวล</td></tr>
-    </table>
+    </table></div>
     </section>
 
     <section data-s>
     <h2 id="mechanics">⚔️ Mechanics & Gameplay<a class="hash" href="#mechanics">#</a></h2>
     <ul>
       <li>ค่าป้องกัน ธาตุ / เผ่า / ขนาด / ประเภท ใส่ได้สูงสุด <b>100%</b></li>
-      <li>ค่าป้องกัน <b>เผ่ามนุษย์ (Demi-Human)</b> สูงสุด <b>90%</b> — ตีกันใน PVP ไม่มีใครอมตะ</li>
+      <li>ค่าป้องกัน <b>เผ่ามนุษย์ (Demi-Human)</b> สูงสุด <b>90%</b> — ตีกันใน PvP ไม่มีใครอมตะ</li>
       <li>ตายแล้วเสีย EXP <b>5%</b> (ทั้ง Base และ Job)</li>
       <li>ยิงธนูไม่เปลืองลูกธนู</li>
-      <li>ไม่มีโหมด PK ทั่วแผนที่ — ตีกันได้เฉพาะลาน PVP / WoE</li>
-      <li>ระบบให้อาหารสัตว์เลี้ยง และ Homunculus อัตโนมัติ</li>
+      <li>ไม่มีโหมด PK ทั่วแผนที่ — ตีกันได้เฉพาะลาน PvP / Auto PvP / WoE</li>
+      <li>ให้อาหารสัตว์เลี้ยง และ Homunculus อัตโนมัติ</li>
       <li>เปิดใช้ ร้านรับซื้อ (Buying Store), ค้นหาร้านค้า, ธนาคาร Zeny, Equip Switch, Roulette, Attendance เช็คชื่อรายวัน</li>
-      <li>เปิดร้านค้าแบบ Autotrade ได้ ออฟไลน์แล้วร้านยังขายต่อ</li>
-    </ul>
-    </section>
-
-    <section data-s>
-    <h2 id="features">🔥 ระบบเด่น<a class="hash" href="#features">#</a></h2>
-    <ul>
-      <li><b>ตีบวกได้สูงสุด +20</b></li>
-      <li><b>ระบบ Charm</b> ชาร์มทั่วไป 250 แบบ + Overlevel 414 แบบ</li>
-      <li><b>World Boss</b> วันละ 2 รอบ เที่ยงวัน และเที่ยงคืน สุ่มโผล่กลางเมือง รุมตีรับรางวัล</li>
-      <li><b>Hot Map</b> ทุกชั่วโมง นาทีที่ 30 สุ่ม 1 แมพ — EXP x2 + Drop x2.5 นาน 20 นาที</li>
-      <li><b>Auction House</b> ประมูลของหายากที่ Auction Master (morocc 175,91) ปิดรอบทุกวัน 23:59 ประกาศเตือนทุก 30 นาที</li>
+      <li>เปิดร้านแบบ Autotrade ได้ ออฟไลน์แล้วร้านยังขายต่อ</li>
     </ul>
     </section>
 
     <section data-s>
     <h2 id="exp">📈 EXP & Job Rate<a class="hash" href="#exp">#</a></h2>
-    <table>
+    <div class="tw"><table>
       <tr><th>ประเภท</th><th>เรท</th></tr>
       <tr><td>Base EXP</td><td class="num">x350</td></tr>
       <tr><td>Job EXP</td><td class="num">x350</td></tr>
       <tr><td>MVP EXP</td><td class="num">x1</td></tr>
-    </table>
-    <div class="note">ตีมอนเป็นกลุ่มได้ EXP เพิ่ม 25% ต่อคนที่ช่วยตี (สูงสุด 12 คน)</div>
+    </table></div>
+    <div class="note">ตีมอนเป็นกลุ่มได้ EXP เพิ่ม 25% ต่อคนที่ช่วยตี (สูงสุด 12 คน) · ตั้งแต่ Lv174 ขึ้นไป EXP ลดเหลือ 1/3</div>
     </section>
 
     <section data-s>
     <h2 id="drop">🎁 Drop & Item Rate<a class="hash" href="#drop">#</a></h2>
-    <table>
+    <div class="tw"><table>
       <tr><th>มอนปกติ</th><th>เรท</th></tr>
       <tr><td>Etc (ของทั่วไป)</td><td class="num">x3</td></tr>
       <tr><td>ยาฟื้นฟู (Healing)</td><td class="num">x2</td></tr>
       <tr><td>ของใช้ (Usable)</td><td class="num">x3</td></tr>
       <tr><td>Equip (อุปกรณ์)</td><td class="num">x10</td></tr>
       <tr><td>Card</td><td class="num">x5 (0.01% → 0.05%)</td></tr>
-    </table>
-    <div class="note">ดรอปสูงสุดต่อชิ้นไม่เกิน 80%</div>
+    </table></div>
+    <div class="note">ดรอปสูงสุดต่อชิ้นไม่เกิน 80% · ของที่มีในเซิร์ฟเยอะเกินจะดรอปน้อยลงอัตโนมัติ (ดู <a href="#start">กติกา</a>)</div>
     </section>
 
     <section data-s>
     <h2 id="mvp">👑 Boss & MVP Rate<a class="hash" href="#mvp">#</a></h2>
-    <table>
+    <div class="tw"><table>
       <tr><th>บอส / MVP</th><th>เรท</th></tr>
       <tr><td>Etc / ยา / ของใช้ / Equip</td><td class="num">x1</td></tr>
       <tr><td>Card</td><td class="num">x2</td></tr>
       <tr><td>MVP Reward</td><td class="num">x1</td></tr>
-    </table>
+    </table></div>
     </section>
 
+    <section data-s>
+    <h2 id="map">🗺️ หมวดหมู่ในวิกิ<a class="hash" href="#map">#</a></h2>
+    <div class="grid">
+      <a href="#start"><b>🚪 เริ่มเล่น & กติกา</b><small>สมัครไอดี ของเริ่มต้น กติกากันบอท</small></a>
+      <a href="#refine"><b>⚒️ ระบบตีบวก</b><small>อัตราสำเร็จ +1 ถึง +20 โบนัสเซ็ต</small></a>
+      <a href="#enchant"><b>💎 ออฟชั่น & เจาะรู</b><small>ออฟช่อง 4 ออฟคอสตูม ถอดการ์ด</small></a>
+      <a href="#charm"><b>🔮 ระบบชาร์ม</b><small>663 แบบ เควสเจ้าพ่อ 7 เมือง</small></a>
+      <a href="#growth"><b>📜 จุติ ยศ & สะสม</b><small>จุติ ยศนักล่า 26 ขั้น สะสมอาชีพ</small></a>
+      <a href="#events"><b>🎉 อีเวนต์</b><small>World Boss Hot Map ทอยเต๋า</small></a>
+      <a href="#dungeon"><b>🏰 เควส & ดันเจี้ยน</b><small>ห้องล่าบอส ดัน 100 ชั้น Illusion</small></a>
+      <a href="#cash"><b>💰 Cash · VIP · Member</b><small>เรทเติมเงิน สิทธิ์ VIP ระดับสมาชิก</small></a>
+    </div>
+    </section>
+    </article>
+
+    <!-- ===================== START ===================== -->
+    <article id="start">
+    <p class="crumb">เริ่มต้น</p>
+    <h1>เริ่มเล่น & กติกา</h1>
+    <p class="lead">สมัครไอดี รับของเริ่มต้น และกติกาที่ต้องรู้ก่อนเล่น</p>
+
+    <section data-s>
+    <h2 id="register">📝 สมัครไอดี<a class="hash" href="#register">#</a></h2>
+    <ol>
+      <li>เปิดเกมผ่าน <b>เปิดเกม Mythra.exe</b> (ตัวเปิดเกมจะอัปเดตไฟล์ให้เอง)</li>
+      <li>ที่หน้าล็อกอิน พิมพ์ชื่อไอดีที่ต้องการต่อท้ายด้วย <code>_M</code> (ชาย) หรือ <code>_F</code> (หญิง) เช่น <code>mythra01_M</code> แล้วใส่รหัสผ่าน</li>
+      <li>กดเข้าเกม 1 ครั้งเพื่อสร้างไอดี จากนั้นล็อกอินด้วยชื่อ <b>ไม่ต้องมี _M / _F</b></li>
+    </ol>
+    <div class="note">ตัวละครใหม่เกิดที่ Morocc ได้ Knife + Cotton Shirt + 1,000z</div>
+    </section>
+
+    <section data-s>
+    <h2 id="starter">🎁 ชุดทองเริ่มต้น<a class="hash" href="#starter">#</a></h2>
+    <p><span class="loc">รับของเริ่มต้น · morocc 167,92</span> รับได้ <b>ตัวละครละ 1 ครั้ง</b> เลือก 1 ชุด</p>
+    <ul>
+      <li><b>Golden Battle Set Box</b> — สายตี: เกราะ ผ้าคลุม รองเท้า + อาวุธ</li>
+      <li><b>Golden Mage Set Box</b> — สายเวท: Robe, Muffler, Boots + อาวุธ</li>
+    </ul>
+    <p>ทุกชิ้นเป็น <b>+7 เช่า 1 วัน</b> อาวุธออกตามอาชีพตอนเปิดกล่อง <b>แนะนำให้เปลี่ยนอาชีพก่อนค่อยเปิด</b></p>
+    <div class="tw"><table>
+      <tr><th>ตีบวกถึง</th><th>ผล</th></tr>
+      <tr><td class="num">+9</td><td>ต่อเวลาเช่าเป็น 7 วัน</td></tr>
+      <tr><td class="num">+15</td><td>กลายเป็นของถาวร ฝากคลังได้</td></tr>
+    </table></div>
+    <div class="note">ระบบเช็คให้เองตอนล็อกอิน หรือพิมพ์ <code>@goldup</code> หลังตีบวกเสร็จ</div>
+    </section>
+
+    <section data-s>
+    <h2 id="rules">⚠️ กติกาที่ต้องรู้<a class="hash" href="#rules">#</a></h2>
+    <h3>ระบบกันบอท (Captcha)</h3>
+    <ul>
+      <li>สุ่มถามทุก ๆ 250–600 ตัวที่ฆ่า ให้พิมพ์รหัสตัวเลข 5 หลักภายใน <b>90 วินาที</b> ผิดได้ 3 ครั้ง ระหว่างรอตัวละครจะขยับไม่ได้</li>
+      <li>ตอบไม่ผ่าน = <b>ติดคุก 30 นาที</b> (รีล็อกก็ไม่หาย) + ประกาศชื่อทั้งเซิร์ฟ</li>
+      <li>คนที่เปิด <code>@auto</code> อยู่จะไม่โดนถาม</li>
+    </ul>
+    <h3>จำกัดไอดีต่อเครื่อง</h3>
+    <ul><li>1 IP ออนไลน์พร้อมกันได้ไม่เกิน <b>5 ไอดี</b> ไอดีที่ 6 จะโดนเตะ</li></ul>
+    <h3>กันปั๊มเงิน</h3>
+    <ul><li>ระบบสแกนทุก 20 นาที ถ้าขายของชิ้นเดิมให้ร้าน NPC ซ้ำ ๆ เกิน 80 ครั้ง หรือซื้อ-ขายของชิ้นเดิมวนอย่างละ 15 ครั้งขึ้นไปใน 6 ชม. จะโดน <b>ระงับไอดีอัตโนมัติ</b></li></ul>
+    <h3>ดรอปลดเมื่อของล้นตลาด</h3>
+    <ul><li>ทุก 30 นาที ระบบนับของทั้งเซิร์ฟ ไอเทมไหนมีเกิน 500 ชิ้น อัตราดรอปลด 20% ต่อทุก 500 ชิ้นที่เกิน (สูงสุดลด 80%) ยกเว้น เศษพลังจุติ, Etel Dust, Oridecon, Elunium</li></ul>
+    </section>
+    </article>
+
+    <!-- ===================== COMMANDS ===================== -->
+    <article id="commands">
+    <p class="crumb">เริ่มต้น</p>
+    <h1>คำสั่งผู้เล่น</h1>
+    <p class="lead">พิมพ์ในช่องแชท</p>
+
+    <section data-s>
+    <h2 id="cmd-custom">⭐ คำสั่งของเซิร์ฟ<a class="hash" href="#cmd-custom">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>คำสั่ง</th><th>ทำอะไร</th></tr>
+      <tr><td><code>@auto</code> / <code>@aa</code></td><td>ตีมอนอัตโนมัติในเกม ตั้งได้: เก็บของ, ระยะหามอน 3–14 ช่อง, กินยาเมื่อ HP ต่ำกว่า %, ใช้สกิลที่เรียนแล้ว, เทเลพอร์ตสุ่ม · ระหว่างเปิด ดรอปเศษพลังจุติลดครึ่ง</td></tr>
+      <tr><td><code>@bonus</code></td><td>ดูบัฟ EXP / Drop ที่ติดอยู่และเวลาที่เหลือ</td></tr>
+      <tr><td><code>@checkmyrate</code></td><td>ดูผลรวมโบนัส EXP / ดรอป / ต้านทาน / โจมตีของตัวเอง</td></tr>
+      <tr><td><code>@rank</code></td><td>ดูยศนักล่า (26 ขั้น) — <a href="#growth">รายละเอียด</a></td></tr>
+      <tr><td><code>@jobcol</code></td><td>ดูการสะสมอาชีพในไอดี — <a href="#growth">รายละเอียด</a></td></tr>
+      <tr><td><code>@refset</code></td><td>อัปเดตออร่าโบนัสตีบวกเซ็ตหลังตีเสร็จ — <a href="#refine">รายละเอียด</a></td></tr>
+      <tr><td><code>@goldup</code></td><td>ต่อเวลา/ทำถาวรชุดทองเริ่มต้น</td></tr>
+      <tr><td><code>@load</code></td><td>วาร์ปกลับจุดเซฟ (ใช้ในคุก, PvP, GvG ไม่ได้)</td></tr>
+      <tr><td><code>@bosswarp</code></td><td>วาร์ปไปหา World Boss ขณะบอสยังอยู่</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="cmd-basic">🔧 คำสั่งพื้นฐาน<a class="hash" href="#cmd-basic">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>คำสั่ง</th><th>ทำอะไร</th></tr>
+      <tr><td><code>@rates</code></td><td>ดูเรท EXP / ดรอปของเซิร์ฟ</td></tr>
+      <tr><td><code>@mobinfo</code> · <code>@iteminfo</code></td><td>ดูข้อมูลมอน / ไอเทม</td></tr>
+      <tr><td><code>@autotrade</code></td><td>ตั้งร้านแล้วออกเกม ร้านยังขายต่อ</td></tr>
+      <tr><td><code>@noask</code></td><td>ปฏิเสธคำขอเทรด / ปาร์ตี้อัตโนมัติ</td></tr>
+      <tr><td><code>@refresh</code></td><td>รีเฟรชตัวละคร</td></tr>
+      <tr><td><code>@petautofeed</code> · <code>@hominfo</code></td><td>ให้อาหารสัตว์เลี้ยงอัตโนมัติ / ดูข้อมูลโฮมุนคูลัส</td></tr>
+      <tr><td><code>@time</code></td><td>ดูเวลาเซิร์ฟ (เป็นเวลา UTC บวก 7 ชม. = เวลาไทย)</td></tr>
+    </table></div>
+    <div class="note"><code>@whodrops</code> และ <code>@whereis</code> ปิดไว้ — ให้ผู้เล่นตามหาของเควสเอง</div>
+    </section>
+    </article>
+
+    <!-- ===================== SCHEDULE ===================== -->
+    <article id="schedule">
+    <p class="crumb">เริ่มต้น</p>
+    <h1>ตารางเวลาอีเวนต์</h1>
+    <p class="lead">เวลาไทยทั้งหมด</p>
+
+    <section data-s>
+    <h2 id="daily">🕒 รายวัน<a class="hash" href="#daily">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>เวลา</th><th>อีเวนต์</th></tr>
+      <tr><td class="num">ทุกชม. :00–:15</td><td>Happy Hour ดรอป x1.5</td></tr>
+      <tr><td class="num">ทุกชม. :30–:50</td><td>Hot Map EXP x2 + Drop +150%</td></tr>
+      <tr><td class="num">ทุก 1 ชม.</td><td>Pokemon Rain 100 ตัวที่ Prontera</td></tr>
+      <tr><td class="num">ทุก 30 นาที</td><td>Auto PvP เปิด 10 นาทีในแมพที่คนเยอะสุด</td></tr>
+      <tr><td class="num">00:00</td><td>World Boss · Lucky Rooms · รีเซ็ตเควสรายวัน · รีเซ็ตรอบห้องล่าบอส</td></tr>
+      <tr><td class="num">12:00</td><td>World Boss · Lucky Rooms</td></tr>
+      <tr><td class="num">15:00 · 16:00 · 17:00</td><td>ทอยเต๋า</td></tr>
+      <tr><td class="num">18:00</td><td>Lucky Rooms</td></tr>
+      <tr><td class="num">19:00 · 22:00</td><td>ทอยเต๋า</td></tr>
+      <tr><td class="num">23:59</td><td>ปิดรอบประมูล + เปิดรอบใหม่</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="weekly">📅 รายสัปดาห์<a class="hash" href="#weekly">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>เวลา</th><th>อีเวนต์</th></tr>
+      <tr><td class="num">จันทร์ 00:00</td><td>ตัดอันดับรายสัปดาห์ PvP / MVP</td></tr>
+      <tr><td class="num">พุธ 21:00–23:00</td><td>WoE ปราสาท Payon</td></tr>
+      <tr><td class="num">เสาร์ 20:00–22:00</td><td>WoE ปราสาท Prontera</td></tr>
+    </table></div>
+    <div class="note">WoE ครั้งแรก: เสาร์ 28 พ.ย. 2026 เวลา 20:00</div>
+    </section>
+    </article>
+
+    <!-- ===================== REFINE ===================== -->
+    <article id="refine">
+    <p class="crumb">อุปกรณ์</p>
+    <h1>ระบบตีบวกอุปกรณ์</h1>
+    <p class="lead"><span class="loc">Upgrade Equipment · morocc 146,54</span> เปิดหน้าต่างตีบวก เลือกแร่และใส่ Blacksmith Blessing ได้ในหน้าต่าง · ตีได้สูงสุด <b>+20</b></p>
+
+    <section data-s>
+    <h2 id="ore">🪨 แร่ที่ใช้ & ค่าตีบวก<a class="hash" href="#ore">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>ประเภท</th><th>+1 ถึง +10</th><th>+11 ถึง +20</th></tr>
+      <tr><td>เกราะ Lv1</td><td>Elunium / Enriched Elunium (2,000z) · HD Elunium (20,000z)</td><td>Carnium / HD Carnium (100,000z)</td></tr>
+      <tr><td>อาวุธ Lv1</td><td>Phracon (50z)</td><td rowspan="4">Bradium / HD Bradium (100,000z)</td></tr>
+      <tr><td>อาวุธ Lv2</td><td>Emveretarcon (200z)</td></tr>
+      <tr><td>อาวุธ Lv3</td><td>Oridecon (5,000z)</td></tr>
+      <tr><td>อาวุธ Lv4</td><td>Oridecon (20,000z)</td></tr>
+      <tr><td>เกราะ Lv2</td><td>Etherium / Enriched Etherium (50,000z) · HD Elunium</td><td>Etel Carnium (100,000z) · HD Etherium / HE Etel Carnium</td></tr>
+      <tr><td>อาวุธ Lv5</td><td>Etherdeocon / Enriched (50,000z) · HD Oridecon</td><td>Etel Bradium (100,000z) · HD Etherdeocon / HE Etel Bradium</td></tr>
+    </table></div>
+    <div class="note">อาวุธ Lv1–4 ใช้ Enriched Oridecon (2,000z) หรือ HD Oridecon (20,000z) แทนได้ · Oridecon / Elunium 15,000z และ Carnium / Bradium 75,000z มีขายที่ร้านราคาคงที่ morocc 150,105</div>
+    </section>
+
+    <section data-s>
+    <h2 id="bless">🔨 Blacksmith Blessing<a class="hash" href="#bless">#</a></h2>
+    <p>ใส่ Blessing เพื่อ <b>กันของแตก/ลดขั้น</b> ใช้ได้ถึง +14</p>
+    <div class="tw"><table>
+      <tr><th>ตีขึ้น</th><th>+8</th><th>+9</th><th>+10</th><th>+11</th><th>+12</th><th>+13</th><th>+14</th><th>+15 ขึ้นไป</th></tr>
+      <tr><td>จำนวน</td><td class="num">1</td><td class="num">2</td><td class="num">4</td><td class="num">7</td><td class="num">11</td><td class="num">16</td><td class="num">22</td><td>ใช้ไม่ได้</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="fail">💥 ตีพลาดแล้วเป็นยังไง<a class="hash" href="#fail">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>ช่วง</th><th>แร่ปกติ</th><th>Enriched</th><th>HD</th></tr>
+      <tr><td>อาวุธ Lv1–4, เกราะ Lv1 (ถึง +10)</td><td>แตก</td><td>แตก</td><td>ลด 1 ขั้น ไม่แตก</td></tr>
+      <tr><td>อาวุธ Lv1–4, เกราะ Lv1 (+11 ถึง +20)</td><td>แตก 20% / ที่เหลือลด 3 ขั้น</td><td>–</td><td>ลด 1 ขั้น</td></tr>
+      <tr><td>เกราะ Lv2, อาวุธ Lv5 (+4 ถึง +10)</td><td>ลด 3 ขั้น</td><td>ลด 1 ขั้น</td><td>ลด 1 ขั้น</td></tr>
+      <tr><td>เกราะ Lv2, อาวุธ Lv5 (+11 ถึง +20)</td><td>แตก</td><td>–</td><td>แตก</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="rate-armor1">🛡️ เกราะ Lv1 / อาวุธ Lv4<a class="hash" href="#rate-armor1">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>ขั้น</th><th>ปกติ</th><th>Enriched</th><th>HD</th></tr>
+      <tr><td>+1 ถึง +4</td><td class="num">100%</td><td class="num">100%</td><td class="num">100%</td></tr>
+      <tr><td>+5</td><td class="num">60%</td><td class="num">90%</td><td class="num">60%</td></tr>
+      <tr><td>+6 ถึง +7</td><td class="num">40%</td><td class="num">70%</td><td class="num">40%</td></tr>
+      <tr><td>+8 ถึง +9</td><td class="num">20%</td><td class="num">40%</td><td class="num">20%</td></tr>
+      <tr><td>+10</td><td class="num">9%</td><td class="num">20%</td><td class="num">9%</td></tr>
+      <tr><td>+11 ถึง +14</td><td class="num">8%</td><td>–</td><td class="num">8%</td></tr>
+      <tr><td>+15 ถึง +18</td><td class="num">7%</td><td>–</td><td class="num">7%</td></tr>
+      <tr><td>+19 ถึง +20</td><td class="num">5%</td><td>–</td><td class="num">5%</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="rate-weapon">⚔️ อาวุธ Lv1 / Lv2 / Lv3<a class="hash" href="#rate-weapon">#</a></h2>
+    <p>รูปแบบ: ปกติ / Enriched / HD</p>
+    <div class="tw"><table>
+      <tr><th>ขั้น</th><th>Lv1</th><th>Lv2</th><th>Lv3</th></tr>
+      <tr><td>ได้ 100% ถึง</td><td class="num">+7</td><td class="num">+6</td><td class="num">+5</td></tr>
+      <tr><td>+6</td><td>100</td><td>100</td><td>60 / 90 / 60</td></tr>
+      <tr><td>+7</td><td>100</td><td>60 / 90 / 60</td><td>50 / 80 / 50</td></tr>
+      <tr><td>+8</td><td>60 / 90 / 60</td><td>40 / 70 / 40</td><td>20 / 40 / 20</td></tr>
+      <tr><td>+9</td><td>40 / 70 / 40</td><td>20 / 40 / 20</td><td>20 / 40 / 20</td></tr>
+      <tr><td>+10</td><td>19 / 30 / 19</td><td>19 / 30 / 19</td><td>19 / 30 / 19</td></tr>
+      <tr><td>+11 ถึง +15</td><td colspan="3">18% (HD 18%)</td></tr>
+      <tr><td>+16 ถึง +18</td><td colspan="3">17%</td></tr>
+      <tr><td>+19 ถึง +20</td><td colspan="3">15%</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="rate-armor2">🛡️ เกราะ Lv2 / อาวุธ Lv5<a class="hash" href="#rate-armor2">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>ขั้น</th><th>ปกติ</th><th>Enriched</th><th>HD</th></tr>
+      <tr><td>+1 ถึง +3</td><td class="num">100%</td><td class="num">100%</td><td class="num">100%</td></tr>
+      <tr><td>+4</td><td class="num">60%</td><td class="num">90%</td><td class="num">100%</td></tr>
+      <tr><td>+5</td><td class="num">60%</td><td class="num">70%</td><td class="num">60%</td></tr>
+      <tr><td>+6 ถึง +7</td><td class="num">40%</td><td class="num">60%</td><td class="num">40%</td></tr>
+      <tr><td>+8 ถึง +9</td><td class="num">20%</td><td class="num">40%</td><td class="num">20%</td></tr>
+      <tr><td>+10</td><td class="num">9%</td><td class="num">20%</td><td class="num">9%</td></tr>
+      <tr><td>+11 ถึง +14</td><td class="num">8%</td><td>–</td><td class="num">15%</td></tr>
+      <tr><td>+15 ถึง +18</td><td class="num">7%</td><td>–</td><td class="num">10%</td></tr>
+      <tr><td>+19 ถึง +20</td><td class="num">5%</td><td>–</td><td class="num">7%</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="shadow">🌑 Shadow Equipment<a class="hash" href="#shadow">#</a></h2>
+    <p>ตีได้สูงสุด <b>+10</b> ครั้งละ 10,000z ใช้ Elunium / Oridecon (ปกติ / Enriched / HD) อัตราเท่ากับเกราะ Lv1 ช่วง +1 ถึง +10 ไม่ใช้ Blessing</p>
+    </section>
+
+    <section data-s>
+    <h2 id="refset">✨ โบนัสตีบวกเซ็ต<a class="hash" href="#refset">#</a></h2>
+    <p>สวมครบ 5 ชิ้น: <b>อาวุธ เกราะ ผ้าคลุม รองเท้า หมวกบน</b> เทียร์คิดจาก <b>ชิ้นที่ตีบวกต่ำสุด</b></p>
+    <div class="tw"><table>
+      <tr><th>เทียร์</th><th>ต่ำสุด</th><th>โบนัส</th><th>ออร่า</th></tr>
+      <tr><td class="num">1</td><td>+7</td><td>All Stats +5, MaxHP +5%</td><td>Blossom Fluttering</td></tr>
+      <tr><td class="num">2</td><td>+10</td><td>All Stats +10, MaxHP/SP +10%</td><td>มังกรเขียว</td></tr>
+      <tr><td class="num">3</td><td>+15</td><td>All Stats +15, MaxHP/SP +15%, ATK +80, MATK +80</td><td>มังกรแดง</td></tr>
+      <tr><td class="num">4</td><td>+20</td><td>All Stats +25, MaxHP/SP +20%, ATK +150, MATK +150</td><td>มังกรเหลือง</td></tr>
+    </table></div>
+    <div class="note">สเตตัสคำนวณใหม่ทุกครั้งที่ใส่/ถอด ส่วนออร่าอัปเดตตอนล็อกอิน หรือพิมพ์ <code>@refset</code></div>
+    </section>
+
+    <section data-s>
+    <h2 id="getore">⛏️ หาแร่ & วัตถุดิบ<a class="hash" href="#getore">#</a></h2>
+    <ul>
+      <li><b>รวมแร่</b> <span class="loc">morocc 145,42</span> ฟรี — Rough Oridecon 5 → Oridecon 1 · Rough Elunium 5 → Elunium 1 (แปลงทั้งกระเป๋า)</li>
+      <li><b>Etel Dust</b> — บอส MVP ดรอป 1–2 ชิ้นทุกตัว · มอน Lv99+ ดรอปสูงสุด 2% (ยิ่งเลเวลสูงยิ่งง่าย) · ร้านราคาคงที่ 12,000z · ใช้คราฟชาร์ม/ของเช่า</li>
+      <li><b>Etel Aquamarine</b> — มอน Lv170+ ดรอป 1%</li>
+      <li><b>HD Oridecon / HD Elunium / HD Bradium / HD Carnium</b> — คราฟได้ที่ Craft Master (ดู <a href="#charm">ระบบชาร์ม</a>) หรือแลกด้วยแต้ม Hunting Missions</li>
+    </ul>
+    </section>
+    </article>
+
+    <!-- ===================== ENCHANT ===================== -->
+    <article id="enchant">
+    <p class="crumb">อุปกรณ์</p>
+    <h1>ออฟชั่น & เจาะรู</h1>
+    <p class="lead">เพิ่มออฟชั่น เจาะรู และถอดการ์ด</p>
+
+    <section data-s>
+    <h2 id="socket">🕳️ เจาะรูอุปกรณ์<a class="hash" href="#socket">#</a></h2>
+    <p><span class="loc">เจาะรูอุปกรณ์ · morocc 118,84</span> แลกของรุ่นไม่มีรูเป็นรุ่นมีรู (อาวุธ 52 รายการ · เกราะ/หมวก/โล่/ประดับ 54 รายการ)</p>
+    <ul>
+      <li>โอกาสสำเร็จ <b>5–25%</b> ค่าเจาะ <b>100,000–2,000,000z</b> แล้วแต่ไอเทม</li>
+      <li>วัตถุดิบ — อาวุธ: Oridecon 1–5 + Steel 5–10 หรือ Phracon / Emveretarcon 10 · เกราะ: Steel 3–5 หรือ Elunium 1–5</li>
+      <li>สำเร็จได้ของใหม่ +0 และประกาศทั้งเซิร์ฟ · ลองสวมหมวก/ผ้าคลุมดูก่อนได้</li>
+    </ul>
+    <div class="warn">⚠️ ถ้าพลาด <b>เสียของเดิม วัตถุดิบ และเงินทั้งหมด</b></div>
+    </section>
+
+    <section data-s>
+    <h2 id="option">🎲 ออฟชั่นสุ่ม (Option Item)<a class="hash" href="#option">#</a></h2>
+    <p><span class="loc">OptionItem · morocc 152,54</span> ใช้กับ หมวกบน เกราะ อาวุธ/โล่ ผ้าคลุม รองเท้า ประดับ ที่สวมอยู่</p>
+    <ul>
+      <li>ครั้งละ <b>200,000z + Red Phantom Resonance Stone x15</b> สำเร็จ 100% ได้ค่าสุ่ม 3–7</li>
+      <li>ลงแถว 1 → 2 → 3 ตามลำดับ · <b>แถว 1 ลงแล้วเปลี่ยนไม่ได้</b> · ออฟซ้ำจะสุ่มทับแถว 2 หรือ 3</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="slot4">💠 ออฟช่อง 4 สุ่ม<a class="hash" href="#slot4">#</a></h2>
+    <p><span class="loc">ช่างเจียระไนออฟ · morocc 144,66</span> ใช้กับของทั่วไปที่สวมอยู่ (ไม่รวมคอสตูม/แชโดว์)</p>
+    <ul>
+      <li>ครั้งละ <b>Red Phantom Resonance Stone x1 + 500,000z</b> ได้หินสุ่ม 1 ลูกลงช่อง 4 แน่นอน (ทับของเดิม)</li>
+      <li>หินที่สุ่มได้ เช่น Critical, Fatal 1–4, Range, ATK/MATK Stone, Fighting Spirit 1–10, Expert Archer 1–10, Casting</li>
+    </ul>
+    <div class="warn">⚠️ ของที่ผ่าน NPC นี้ <b>ออฟชั่นสุ่ม (Random Option) จะหาย</b> เหลือแค่ค่าตีบวกและการ์ดช่อง 1–3 — ลงออฟช่อง 4 ก่อนค่อยลงออฟชั่นสุ่ม</div>
+    </section>
+
+    <section data-s>
+    <h2 id="cosopt">👒 ออฟคอสตูม 4 ช่อง<a class="hash" href="#cosopt">#</a></h2>
+    <p><span class="loc">ออฟชั่นคอสตูม · morocc 144,60</span> ใช้กับ คอสหมวกบน / หู / ปาก / ผ้าคลุม ที่สวมอยู่ เลือกช่องเอง สำเร็จ 100% ทับของเดิมในช่อง</p>
+    <div class="tw"><table>
+      <tr><th>ช่อง</th><th>ใส่อะไร</th><th>ค่าใช้จ่าย</th></tr>
+      <tr><td class="num">1</td><td>Class Stone (36 อาชีพ เลือกเอง)</td><td>Silvervine Fruit x15 + 500,000z</td></tr>
+      <tr><td class="num">2</td><td>Class Stone II (22 อาชีพ)</td><td>Silvervine Fruit x15 + 500,000z</td></tr>
+      <tr><td class="num">3</td><td>ออฟสเตตัส — หมวก 14 แบบ (VCT, EXP+2%, ATK/MATK+1%, ASPD+1, Greed ฯลฯ) · ผ้าคลุม 11 แบบ (Fixed Cast, Skill Delay -15%, Double Attack ฯลฯ)</td><td>Silvervine Fruit x15 + 500,000z</td></tr>
+      <tr><td class="num">4</td><td>เอฟเฟกต์ตัวละคร 172 แบบ</td><td>Silvervine Fruit x20 + 500,000z</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="illusion-enc">🌀 ออฟชุด Illusion 17.1<a class="hash" href="#illusion-enc">#</a></h2>
+    <p><span class="loc">pvp_room 27,76</span> เปิดหน้าต่าง Enchant สำหรับ เกราะ / Engine / Leg / แหวนขวา-ซ้าย ของชุด Illusion (ต้องมีของอยู่ในกระเป๋า) วัตถุดิบและโอกาสดูได้ในหน้าต่าง</p>
+    </section>
+
+    <section data-s>
+    <h2 id="edda">🧪 ออฟอาวุธ EDDA Biolab<a class="hash" href="#edda">#</a></h2>
+    <p><span class="loc">Lavian · yuno 216,345</span> ใช้กับอาวุธ Biolab 38 ชนิดที่ถือมือขวา <b>ต้องออฟช่อง 4 ก่อนแล้วค่อยช่อง 3</b> ออฟแล้วลบไม่ได้ · วัตถุดิบ: Somatology Experimental Fragment + Somatology Research Document</p>
+    <div class="tw"><table>
+      <tr><th>ช่อง</th><th>แบบ</th><th>วัตถุดิบ</th><th>ติด</th><th>ไม่ติด</th><th>อาวุธแตก</th></tr>
+      <tr><td rowspan="2">4</td><td>General</td><td>อย่างละ 50</td><td class="num">60%</td><td>35%</td><td>5%</td></tr>
+      <tr><td>Advanced</td><td>อย่างละ 500</td><td class="num">90%</td><td>10%</td><td>–</td></tr>
+      <tr><td rowspan="3">3</td><td>General</td><td>อย่างละ 50</td><td class="num">30%</td><td>50%</td><td>20%</td></tr>
+      <tr><td>Advanced</td><td>อย่างละ 500</td><td class="num">70%</td><td>30%</td><td>–</td></tr>
+      <tr><td>Determined</td><td>Fragment 5,000</td><td class="num">100%</td><td colspan="2">เลือก Memory เองได้ 13 แบบ</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="cardremove">🃏 ถอดการ์ด<a class="hash" href="#cardremove">#</a></h2>
+    <p><span class="loc">Card Remover · morocc 116,72</span> ค่าถอด <b>200,000z + 25,000z ต่อการ์ด 1 ใบ + Star Crumb 1 + Yellow Gemstone 1</b></p>
+    <div class="tw"><table>
+      <tr><th>ผล</th><th>โอกาส</th></tr>
+      <tr><td>สำเร็จ ได้ทั้งการ์ดและของ</td><td class="num">90%</td></tr>
+      <tr><td>เสียการ์ด <b>หรือ</b> ของ (เลือกล่วงหน้าว่าจะรักษาอะไร)</td><td class="num">6%</td></tr>
+      <tr><td>ล้มเหลว แต่ทั้งคู่ปลอดภัย</td><td class="num">2%</td></tr>
+      <tr><td>พังทั้งการ์ดและของ</td><td class="num">2%</td></tr>
+    </table></div>
+    </section>
+    </article>
+
+    <!-- ===================== CHARM ===================== -->
+    <article id="charm">
+    <p class="crumb">พัฒนาตัวละคร</p>
+    <h1>ระบบชาร์ม</h1>
+    <p class="lead">ชาร์มทั้งหมด 663 แบบ ถือไว้ในกระเป๋าแล้วได้สกิล/โบนัสทันที</p>
+
+    <section data-s>
+    <h2 id="charm-type">🔮 ประเภทชาร์ม<a class="hash" href="#charm-type">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>ประเภท</th><th>จำนวน</th><th>ผล</th></tr>
+      <tr><td>ชาร์มสกิล C3</td><td class="num">102</td><td>ถือแล้วใช้สกิลได้ทันทีไม่ว่าอาชีพไหน</td></tr>
+      <tr><td>ชาร์มสกิล C4</td><td class="num">123</td><td>เหมือน C3 แต่เป็นสกิลอาชีพ 4 <span class="soon">ยังไม่เปิด</span></td></tr>
+      <tr><td>Overlevel</td><td class="num">414</td><td>ดันสกิลที่มีอยู่แล้ว +1 Lv (สกิลนั้นต้อง Lv5 ก่อน)</td></tr>
+      <tr><td>ชาร์มพิเศษ</td><td class="num">24</td><td>ชาร์มโบนัส เช่น Wolf Orb จากเควสเจ้าพ่อ</td></tr>
+    </table></div>
+    <div class="warn">⚠️ ชาร์มสกิล / Overlevel <b>ถือใบเดียวกันเกิน 1 ใบจะไม่ทำงาน</b> · ชาร์มพิเศษถือเกิน 2 ใบไม่ทำงาน</div>
+    </section>
+
+    <section data-s>
+    <h2 id="charm-master">📜 Charm Master (รับชาร์ม C3)<a class="hash" href="#charm-master">#</a></h2>
+    <p><span class="loc">morocc 155,127</span> ไม่เสียเงิน ทำซ้ำได้ไม่จำกัด (นับต่อตัวละคร)</p>
+    <ul>
+      <li>ล่ามอน <b>Lv140 ขึ้นไป ตัวไหนก็ได้ 100 ตัว</b></li>
+      <li>เก็บของ 2 อย่าง <b>อย่างละ 200 ชิ้น</b> (สุ่ม 1 ใน 10 ชุด ไม่ซ้ำกับรอบก่อน เช่น Golden Hair + Reins)</li>
+      <li>รางวัล: <b>ชาร์มสกิล C3 สุ่ม 1 ใบ</b></li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="charm-recycle">♻️ Charm Recycler (ย่อยชาร์ม C3)<a class="hash" href="#charm-recycle">#</a></h2>
+    <p><span class="loc">morocc 164,127</span> ฝากชาร์ม C3 ครบ <b>3 ใบ</b> → สุ่มได้ C3 ใบใหม่ 1 ใบ (อาจซ้ำของเดิม) ยอดฝากเก็บต่อตัวละคร</p>
+    </section>
+
+    <section data-s>
+    <h2 id="overlevel">⬆️ แลกชาร์ม Overlevel<a class="hash" href="#overlevel">#</a></h2>
+    <p><span class="loc">แลกชามดันสกิล · morocc 161,127</span> <b>เลือกอาชีพ แล้วเลือกสกิลที่ต้องการได้เอง</b> ไม่ใช่การสุ่ม</p>
+    <ul>
+      <li>ค่าแลก 1 ใบ: <b>เศษพลังจุติ 500 ชิ้น + 5,000,000z + 1,000 Cash Point</b></li>
+      <li>หาเศษพลังจุติ: มอน Lv140–199 ดรอป 12% · มอน Lv200+ ดรอป 20% · บอส MVP (Lv140+) ได้ 30 ชิ้นทุกตัว · รางวัลอันดับรายสัปดาห์</li>
+    </ul>
+    <div class="note">ระหว่างเปิด <code>@auto</code> โอกาสดรอปเศษพลังจุติเหลือครึ่งเดียว</div>
+    </section>
+
+    <section data-s>
+    <h2 id="zaopho">🐺 เควสปริศนาเจ้าพ่อ 7 เมือง<a class="hash" href="#zaopho">#</a></h2>
+    <p>คุยกับเจ้าพ่อแล้วกด "รับคำท้า" — บท 1–3 ไขปริศนาว่าคือไอเทมอะไรแล้วนำมาส่ง <b>บทละ 250 ชิ้น</b> · บท 4 เจ้าพ่อเสกบอส MVP กลางเมืองให้ฆ่า · ได้ชาร์ม <b>ตัวละครละ 1 ครั้ง</b> ต่อเมือง</p>
+    <div class="tw"><table>
+      <tr><th>NPC</th><th>จุด</th><th>ชาร์ม</th><th>โบนัสหลัก</th></tr>
+      <tr><td>เจ้าพ่อมอ</td><td>morocc 282,297</td><td>Wolf Orb Def</td><td>All Stats +10, HP/SP +20%, DEF +100, MDEF +50, กันทุกธาตุ 10%</td></tr>
+      <tr><td>เจ้าพ่อพอน</td><td>payon 78,235</td><td>Wolf Orb Dex</td><td>All Stats +10, DEX +30, HIT +50, ASPD +10%, ดาเมจระยะไกล +15% (PvM)</td></tr>
+      <tr><td>เจ้าพ่อนักดาบ</td><td>izlude 117,130</td><td>Wolf Orb Spirit</td><td>All Stats +20, HP/SP +15%, ดาเมจกายภาพ/เวท +10% (PvM)</td></tr>
+      <tr><td>เจ้าพ่อปรอน</td><td>prontera 105,87</td><td>Wolf Orb Force</td><td>All Stats +10, ATK/MATK +200, ดาเมจกายภาพ/เวท +15% (PvM)</td></tr>
+      <tr><td>เจ้าพ่อเกฟ</td><td>geffen 112,129</td><td>Wolf Orb HealSP</td><td>All Stats +10, SP +30%, ฟื้น HP/SP +50%, Heal +20%</td></tr>
+      <tr><td>เจ้าพ่ออัลเด</td><td>aldebaran 128,97</td><td>Wolf Orb Magic</td><td>All Stats +10, INT +30, ร่ายเร็วขึ้น 15%, MATK +250, ดาเมจเวท +15% (PvM)</td></tr>
+      <tr><td>เจ้าพ่อโคโม</td><td>comodo 126,98</td><td>Wolf Orb Reject</td><td>All Stats +10, HP +20%, กันทุกธาตุ 15%, สะท้อนดาเมจระยะประชิด 15% (PvM)</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="craft">🛠️ Craft Master<a class="hash" href="#craft">#</a></h2>
+    <p><span class="loc">morocc 134,78</span> คราฟได้ครั้งละสูงสุด 100 ชิ้น</p>
+    <h3>ร้าน 1 — Craft Charm (สำเร็จ 30%)</h3>
+    <p>วัตถุดิบทุกแบบ: <b>Cash Coin x10 + Etel Dust x30</b> + Zeny</p>
+    <div class="tw"><table>
+      <tr><th>ชาร์ม</th><th>Zeny</th></tr>
+      <tr><td>All Stats +5</td><td class="num">1,000,000</td></tr>
+      <tr><td>HP Drain · SP Drain · Magic/Range/Normal HP Gain · SP Gain · Teleport Lv2</td><td class="num">2,000,000</td></tr>
+      <tr><td>Greed</td><td class="num">5,000,000</td></tr>
+    </table></div>
+    <h3>ร้าน 2 — ของเช่า & แร่ HD (สำเร็จ 50%)</h3>
+    <div class="tw"><table>
+      <tr><th>ของ</th><th>ค่าคราฟ</th></tr>
+      <tr><td>กล่องชาร์มเช่า 3 ชม. (Drop Cash / Craft Dust)</td><td>1,000,000z + Etel Dust x10</td></tr>
+      <tr><td>กล่องชาร์ม Greed 3 ชม.</td><td>300,000z + Etel Dust x5</td></tr>
+      <tr><td>HD Oridecon / HD Elunium</td><td>500,000z + Etel Dust x10</td></tr>
+      <tr><td>HD Bradium / HD Carnium</td><td>1,500,000z + Etel Dust x20</td></tr>
+      <tr><td>VIP Ticket 7 วัน</td><td>50,000,000z (สำเร็จ 100%)</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="charm-soon">⏳ เร็ว ๆ นี้<a class="hash" href="#charm-soon">#</a></h2>
+    <ul>
+      <li><b>Charm Exchanger</b> (ฝากชาร์มครบ 10 ใบ สุ่ม C4) <span class="soon">รอ Ep19</span></li>
+      <li><b>เควสสกิลจุติ C4</b> (ฆ่าบอส + เก็บของ → ชาร์ม C4) <span class="soon">รอ Ep19</span></li>
+    </ul>
+    </section>
+    </article>
+
+    <!-- ===================== GROWTH ===================== -->
+    <article id="growth">
+    <p class="crumb">พัฒนาตัวละคร</p>
+    <h1>จุติ ยศ & สะสม</h1>
+    <p class="lead">ระบบสะสมโบนัสถาวร</p>
+
+    <section data-s>
+    <h2 id="juti">🔁 จุติ (Reincarnation)<a class="hash" href="#juti">#</a></h2>
+    <p><span class="loc">จุติ · morocc 159,110</span></p>
+    <ul>
+      <li>เงื่อนไข: <b>Base 175 / Job 70</b></li>
+      <li>ค่าจุติ: <b>Cash Coin มูลค่ารวม 1,000 + 5,000,000z</b> (Cash Coin ธรรมดา = 1 · เหรียญ 10 = 10 · เหรียญ 100 = 100)</li>
+      <li>ผล: Base/Job กลับเป็น 1 แต่ <b>สเตตัสที่อัปไว้ยังอยู่</b> สกิลรีเซ็ตใหม่ · จุติได้ไม่จำกัด</li>
+    </ul>
+    <div class="note">จำนวนครั้งที่จุติใช้เป็นเงื่อนไขของ <a href="#dungeon">ห้องล่าบอส</a> (ต้องจุติ 20 รอบขึ้นไปถึงทำดาเมจบอสได้)</div>
+    </section>
+
+    <section data-s>
+    <h2 id="rank">🏅 ยศนักล่า (@rank)<a class="hash" href="#rank">#</a></h2>
+    <p>นับจากจำนวนมอนที่ฆ่าสะสม (นับต่อตัวละคร) มี <b>26 ขั้น</b> เลื่อนขั้นประกาศทั้งเซิร์ฟ</p>
+    <div class="tw"><table>
+      <tr><th>ขั้น</th><th>ยอดฆ่า</th><th>ขั้น</th><th>ยอดฆ่า</th><th>ขั้น</th><th>ยอดฆ่า</th></tr>
+      <tr><td>1</td><td>0</td><td>10</td><td>38,000</td><td>19</td><td>630,000</td></tr>
+      <tr><td>2</td><td>300</td><td>11</td><td>56,000</td><td>20</td><td>820,000</td></tr>
+      <tr><td>3</td><td>800</td><td>12</td><td>80,000</td><td>21</td><td>1,050,000</td></tr>
+      <tr><td>4</td><td>1,800</td><td>13</td><td>110,000</td><td>22</td><td>1,350,000</td></tr>
+      <tr><td>5</td><td>3,500</td><td>14</td><td>150,000</td><td>23</td><td>1,700,000</td></tr>
+      <tr><td>6</td><td>6,000</td><td>15</td><td>200,000</td><td>24</td><td>2,150,000</td></tr>
+      <tr><td>7</td><td>10,000</td><td>16</td><td>270,000</td><td>25</td><td>2,700,000</td></tr>
+      <tr><td>8</td><td>16,000</td><td>17</td><td>360,000</td><td>26</td><td>3,400,000</td></tr>
+      <tr><td>9</td><td>25,000</td><td>18</td><td>480,000</td><td></td><td></td></tr>
+    </table></div>
+    <p>โบนัสขั้น N: MaxHP +(N−1)% · MaxSP +⌊(N−1)/2⌋% · All Stats +⌊(N−1)/2⌋ · น้ำหนัก +(N−1)×100</p>
+    <div class="note">ขั้น 26 (ผู้พิทักษ์โลกภายนอก): MaxHP +25%, MaxSP +12%, All Stats +12, น้ำหนัก +2,500</div>
+    </section>
+
+    <section data-s>
+    <h2 id="jobcol">👥 สะสมอาชีพ (@jobcol)<a class="hash" href="#jobcol">#</a></h2>
+    <p>นับสายอาชีพจาก <b>ทุกตัวละครในไอดี</b> (12 สาย รวมร่าง trans/3rd/4th) โบนัสถาวรให้ <b>ทุกตัวละครในไอดี</b></p>
+    <div class="tw"><table>
+      <tr><th>เซ็ต</th><th>ต้องมี</th><th>โบนัส</th></tr>
+      <tr><td>ตำนาน 4 อาชีพ</td><td>อัศวิน + บาร์ด + พรีสต์ + มังค์</td><td>STR +30</td></tr>
+      <tr><td>จอมเวทย์</td><td>พ่อมด + เซจ + พรีสต์</td><td>INT +20, MATK +30</td></tr>
+      <tr><td>นักล่าเงา</td><td>นักธนู + นักฆ่า + โจร</td><td>AGI +15, DEX +15</td></tr>
+      <tr><td>ช่างฝีมือ</td><td>ช่างตีเหล็ก + นักเล่นแร่</td><td>VIT +15, MaxHP +10%</td></tr>
+      <tr><td>อัศวินศักดิ์สิทธิ์</td><td>อัศวิน + ครูเสด + พรีสต์</td><td>All Stats +3</td></tr>
+      <tr><td>ครบ 12 สาย</td><td>ทุกสาย</td><td>All Stats +15, HP/SP +15%, ATK/MATK +50</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="collection">📚 Collection (คลังสะสม)<a class="hash" href="#collection">#</a></h2>
+    <p>เปิดจาก <b>ปุ่มเมนู Collection</b> · ฝากของแล้ว <b>ถอนคืนไม่ได้</b> ได้โบนัสถาวร</p>
+    <div class="tw"><table>
+      <tr><th>เซ็ต</th><th>โบนัส</th></tr>
+      <tr><td>1 ตระกูลโพริง</td><td>LUK +5, Perfect Dodge +3</td></tr>
+      <tr><td>2 สายพลังกาย</td><td>STR +3, ATK +15</td></tr>
+      <tr><td>3 เกราะธาตุ</td><td>กันไฟ/น้ำ/ลม/ดิน +3%</td></tr>
+      <tr><td>4 สายอึด</td><td>HP +3%, SP +2%</td></tr>
+      <tr><td>5 นักล่า MVP</td><td>All Stats +1, ดาเมจใส่ทุกอาชีพ +2%</td></tr>
+      <tr><td>6 หมวกจอมมาร</td><td>All Stats +2</td></tr>
+      <tr><td>7 หมวกเวท</td><td>MATK +30, SP +3%</td></tr>
+      <tr><td>8 อาวุธบอส</td><td>ดาเมจ +3%</td></tr>
+    </table></div>
+    <ul>
+      <li>หมวกบอส 34 แบบ ใบละ HP +50, SP +10 · อาวุธบอส 139 แบบ ชิ้นละ HP +20</li>
+      <li>หมวก Mall มีโบนัสรายใบ เก็บครบ 21 ใบได้เพิ่ม All Stats +3, HP/SP +5%</li>
+      <li>ในเมนูเดียวกันมี <b>จัดการสัตว์เก็บของ</b>: เปิด/ปิดให้สัตว์เลี้ยงเก็บของตามประเภท หรือระบุเลขไอเทมได้ 10 ช่อง</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="craftcos">🧥 คราฟผ้าคลุมคอสตูม<a class="hash" href="#craftcos">#</a></h2>
+    <p><span class="loc">Craft Costume · morocc 143,75</span> ทำผ้าคลุมคอสตูมได้ 10 แบบ (เช่น Sakura Wing, Ninetail Tail)</p>
+    <ul>
+      <li>ค่าคราฟ: <b>1,000,000z + Craft Costume Ticket x1</b> สำเร็จ <b>20%</b> ทำสำเร็จประกาศทั้งเซิร์ฟ</li>
+      <li>โบนัสเช่น All Stats +1, Drop +5%, EXP +5%, น้ำหนัก +500</li>
+    </ul>
+    </section>
+    </article>
+
+    <!-- ===================== EVENTS ===================== -->
+    <article id="events">
+    <p class="crumb">กิจกรรม</p>
+    <h1>อีเวนต์</h1>
+    <p class="lead">อีเวนต์อัตโนมัติ — ดูเวลาทั้งหมดที่ <a href="#schedule">ตารางเวลา</a></p>
+
+    <section data-s>
+    <h2 id="worldboss">🐲 World Boss<a class="hash" href="#worldboss">#</a></h2>
+    <p><span class="loc">12:00 · 00:00</span> <span class="loc">ข้อมูล · morocc 131,107</span></p>
+    <ul>
+      <li>ประกาศเตือนก่อน 60 วินาที บอสสุ่มเกิดใน 12 เมือง · พิมพ์ <code>@bosswarp</code> หรือคุยกับ NPC เพื่อวาร์ปไปหา</li>
+      <li>บอสสุ่ม 1 ใน 5: Ifrit, Randgris, Atroce, Detardeurus, Baphomet — HP 50M, Lv175 ทุก 8 วินาทีใช้ Hell Judgement ใส่คนในระยะ 15 ช่อง</li>
+      <li>ไม่ตายใน 30 นาที บอสหนี</li>
+    </ul>
+    <div class="tw"><table>
+      <tr><th>รางวัล</th><th>ได้อะไร</th></tr>
+      <tr><td>คนตีปิด</td><td>Old Card Album x10 + 5,000,000z + Cash Coin x100</td></tr>
+      <tr><td>คนร่วมตี (ในระยะ 20 ช่อง)</td><td>Old Blue Box x3 + 500,000z + Cash Coin x50</td></tr>
+    </table></div>
+    <div class="note">รางวัลคนร่วม 1 ตัวต่อ IP · ต้องไม่ตายและไม่ยืน AFK เกิน 2 นาที</div>
+    </section>
+
+    <section data-s>
+    <h2 id="hotmap">🔥 Hot Map<a class="hash" href="#hotmap">#</a></h2>
+    <p><span class="loc">ทุกชม. นาทีที่ 30 · นาน 20 นาที</span> สุ่ม 1 แมพจากแมพที่คนน้อยที่สุดในลิสต์ (gef_fild01/04/10, moc_fild01/03, mjolnir_01/05, cmd_fild01/06, hu_fild04) ได้ <b>EXP x2 + Drop +150%</b></p>
+    </section>
+
+    <section data-s>
+    <h2 id="happyhour">🍀 Happy Hour<a class="hash" href="#happyhour">#</a></h2>
+    <p><span class="loc">ทุกชม. :00–:15</span> ดรอป x1.5 ทั้งเซิร์ฟ (ของทั่วไป ยา ของใช้ อุปกรณ์ — <b>ไม่รวมการ์ด</b>)</p>
+    </section>
+
+    <section data-s>
+    <h2 id="pokemon">⚡ Pokemon Rain<a class="hash" href="#pokemon">#</a></h2>
+    <p><span class="loc">ทุก 1 ชม.</span> ปล่อยโปเกมอน 100 ตัวลง <b>Prontera</b> ฆ่า 1 ตัวได้ <b>Cash Coin x1</b> แน่นอน · รอบใหม่ล้างตัวที่เหลือของรอบเก่า</p>
+    </section>
+
+    <section data-s>
+    <h2 id="autopvp">⚔️ Auto PvP<a class="hash" href="#autopvp">#</a></h2>
+    <p><span class="loc">ทุก 30 นาที · นาน 10 นาที</span> เปิด PvP ในแมพที่มีคนออนไลน์มากที่สุด (อย่างน้อย 2 คน) เตือนก่อนปิด 1 นาที · <b>ไม่เปิดในเมือง</b></p>
+    </section>
+
+    <section data-s>
+    <h2 id="lucky">💣 Lucky Rooms<a class="hash" href="#lucky">#</a></h2>
+    <p><span class="loc">12:00 · 18:00 · 00:00</span> <span class="loc">morocc 201,107</span> ต้อง Base Lv มากกว่า 80 · เข้าได้ภายใน 5 นาที</p>
+    <ul>
+      <li>ประตู 4 ห้องเปิดให้เลือก 1 นาที แล้วสุ่มระเบิด 3 รอบ รอบละ 1 ห้อง</li>
+      <li>ห้องที่โดนระเบิด: <b>Random Box I x1</b> · ห้องที่รอดสุดท้าย: <b>Random Box I x5</b></li>
+      <li>จำกัด 3 ตัวละครต่อ IP</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="dice-event">🎲 กิจกรรมทอยเต๋า<a class="hash" href="#dice-event">#</a></h2>
+    <p><span class="loc">15:00 · 16:00 · 17:00 · 19:00 · 22:00</span> <span class="loc">morocc 171,74</span> Novice เข้าไม่ได้ · เข้าได้ภายใน 3 นาที (ต้องพิมพ์โค้ดตัวเลขกันบอท)</p>
+    <ul>
+      <li>มี 6 ห้อง ทอยเต๋า 5 ครั้ง เลขไม่ซ้ำ ห้องที่ตรงเลขถูกส่งกลับ Morocc · ระหว่างรอบย้ายห้องได้ 10 วินาที</li>
+      <li>ได้ <b>Cash Coin x20</b> ทุกช่วง (ตอนเข้า + หลังรอบ 1–4 + ตอนจบ) อยู่จนจบได้สูงสุด <b>120 Cash Coin</b></li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="killboss">💀 ฆ่าบอสรับของ<a class="hash" href="#killboss">#</a></h2>
+    <p>ฆ่าบอส/MVP (~170 ตัว) ได้ <b>Etel Dust x5 + 70,000z</b> ทุกครั้ง และได้ <b>Cash Coin x1</b> ต่อตัว (โควตาทั้งเซิร์ฟ 250 เหรียญต่อช่วง รีเซ็ต 00:00 / 06:00 / 12:00 / 18:00)</p>
+    </section>
+
+    <section data-s>
+    <h2 id="donation">🤝 บริจาคทั้งเซิร์ฟ<a class="hash" href="#donation">#</a></h2>
+    <p><span class="loc">Donation Master · morocc 126,110</span> ทุกคนช่วยกันส่งของให้ครบเป้า</p>
+    <ul>
+      <li>เป้า: Elunium 1,000 · Oridecon 1,000 · Gold 25 · Steel 500 · 50,000,000z · Cash Point 5,000</li>
+      <li>ครบแล้วทั้งเซิร์ฟได้ <b>EXP +100% / Drop +100% (รวมการ์ด) 2 ชม.</b> และทุกคนที่ออนไลน์ได้ <b>Old Card Album x100</b></li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="weeklyrank">🏆 อันดับรายสัปดาห์<a class="hash" href="#weeklyrank">#</a></h2>
+    <p><span class="loc">morocc 195,94</span> ตัดรอบ <b>จันทร์ 00:00</b> แยกสาย PvP กับ MVP ต้องมีอย่างน้อย 30 แต้ม · รับได้ 1 ครั้งต่อตัวละครต่อรอบ</p>
+    <div class="tw"><table>
+      <tr><th>อันดับ</th><th>Old Card Album</th><th>Etel Dust</th><th>เศษพลังจุติ</th><th>Zeny</th></tr>
+      <tr><td class="num">1</td><td>10</td><td>150</td><td>150</td><td>3,000,000</td></tr>
+      <tr><td class="num">2</td><td>5</td><td>80</td><td>80</td><td>2,000,000</td></tr>
+      <tr><td class="num">3</td><td>3</td><td>40</td><td>40</td><td>1,000,000</td></tr>
+    </table></div>
+    <div class="note">กระดาน Top 10 ดูได้ที่ <span class="loc">Ranking · morocc 195,92</span> · แต้ม PvP นับเฉพาะลาน PvP (ฆ่าตัวละคร IP เดียวกันไม่นับ) · แต้ม MVP นับจากบอส MVP คลาสสิก 47 ตัว</div>
+    </section>
+
+    <section data-s>
+    <h2 id="auction">🔨 ประมูล (Auction House)<a class="hash" href="#auction">#</a></h2>
+    <p><span class="loc">Auction Master · morocc 175,91</span> ปิดรอบทุกวัน <b>23:59</b> แล้วเปิดรอบใหม่ทันที ประกาศทุก 30 นาที</p>
+    <ul>
+      <li>บิดด้วย Zeny ต้องสูงกว่าราคาปัจจุบัน · ถ้าโดนแซง <b>เงินคืนอัตโนมัติ</b> (ออฟไลน์ได้คืนตอนล็อกอิน)</li>
+      <li>ผู้ชนะได้ของเข้าตัว หรือไปรับที่ NPC</li>
+    </ul>
+    </section>
+    </article>
+
+    <!-- ===================== MINIGAME ===================== -->
+    <article id="minigame">
+    <p class="crumb">กิจกรรม</p>
+    <h1>มินิเกม</h1>
+    <p class="lead">เล่นได้ตลอดเวลา</p>
+
+    <section data-s>
+    <h2 id="hilo">🎲 ไฮโล (Dice Master)<a class="hash" href="#hilo">#</a></h2>
+    <p><span class="loc">morocc 169,82</span> ลูกเต๋า 3 ลูก เดิมพันด้วย Cash Point หรือ Zeny ขั้นต่ำ 100</p>
+    <div class="tw"><table>
+      <tr><th>แทง</th><th>จ่าย (กำไร)</th></tr>
+      <tr><td>สูง (11–17) / ต่ำ (4–10)</td><td class="num">x1 (ออกตองถือว่าแพ้)</td></tr>
+      <tr><td>เต็ง เจอ 1 / 2 / 3 ลูก</td><td class="num">x1 / x2 / x3</td></tr>
+      <tr><td>ผลรวม 11</td><td class="num">x5</td></tr>
+      <tr><td>โต๊ด (ตองตรงเลข)</td><td class="num">x30</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="poringslot">🎰 Poring Slots<a class="hash" href="#poringslot">#</a></h2>
+    <p><span class="loc">ตัวหมุน · morocc 207,40</span> <span class="loc">รับแทง · morocc 220,33–45</span> แทงด้วย Cash Coin ครั้งละ 10 / 50 / 100 / 300 / 500 / 1,000 · คนกดหมุนจ่าย Cash Coin x1</p>
+    <div class="tw"><table>
+      <tr><th>ตัว</th><th>จ่าย</th><th>ช่องบนวงล้อ</th></tr>
+      <tr><td>Poring</td><td class="num">x2</td><td>13 / 28</td></tr>
+      <tr><td>Drops</td><td class="num">x4</td><td>6 / 28</td></tr>
+      <tr><td>Poporing</td><td class="num">x6</td><td>4 / 28</td></tr>
+      <tr><td>Archangeling</td><td class="num">x13</td><td>2 / 28</td></tr>
+      <tr><td>Angeling</td><td class="num">x17</td><td>1 / 28</td></tr>
+      <tr><td>ช่องแพ้</td><td>–</td><td>2 / 28</td></tr>
+    </table></div>
+    <div class="warn">⚠️ ต้องไปรับเงินที่ NPC <b>ก่อนวงล้อหมุนรอบถัดไป</b> ไม่งั้นหาย</div>
+    </section>
+
+    <section data-s>
+    <h2 id="hotweek">🎁 Hotweek Slot (ตู้สุ่ม)<a class="hash" href="#hotweek">#</a></h2>
+    <p><span class="loc">morocc 171,102</span> หมุนละ <b>10 Cash Point</b> · ครบ 100 รอบการันตี Craft Costume Ticket x1</p>
+    <div class="tw"><table>
+      <tr><th>ระดับ</th><th>โอกาส</th><th>ตัวอย่างของ</th></tr>
+      <tr><td>Legend</td><td class="num">2%</td><td>Flying Galapago, Falconer Claw, Rideword Hat</td></tr>
+      <tr><td>General</td><td class="num">9%</td><td>Craft Costume Ticket, Bloody Branch, Old Card Album</td></tr>
+      <tr><td>Major</td><td class="num">12%</td><td>Enriched Ori/Elu, Convex Mirror Box, Bragi Package</td></tr>
+      <tr><td>Sergeant</td><td class="num">22%</td><td>Random Box I, Old Blue Box, Blacksmith Blessing</td></tr>
+      <tr><td>Basic</td><td class="num">55%</td><td>Rough Ori/Elu, Gift Box, Gem, Battle Manual</td></tr>
+    </table></div>
+    <div class="note">มีกองแจ็คพอตสะสม ทุก 10 รอบมีโอกาส 1% แตก ได้ 50–100% ของกอง</div>
+    </section>
+
+    <section data-s>
+    <h2 id="eggfield">🥚 ลานไข่ปริศนา<a class="hash" href="#eggfield">#</a></h2>
+    <p><span class="loc">morocc 211–229, 78–84</span> ไข่ 21 ใบ ทุบใบละ <b>50,000z</b></p>
+    <div class="tw"><table>
+      <tr><th>ของ</th><th>โอกาส</th></tr>
+      <tr><td>Red Potion x50</td><td class="num">30%</td></tr>
+      <tr><td>Elunium x10 / Oridecon x10</td><td class="num">20% / 20%</td></tr>
+      <tr><td>Yggdrasil Berry x20</td><td class="num">15%</td></tr>
+      <tr><td>Battle Manual x5</td><td class="num">8%</td></tr>
+      <tr><td>Bubble Gum x5</td><td class="num">5%</td></tr>
+      <tr><td>Old Card Album</td><td class="num">1.5%</td></tr>
+      <tr><td>Inventory Expansion Coupon</td><td class="num">0.4%</td></tr>
+      <tr><td>Baphomet Card ⭐</td><td class="num">0.08%</td></tr>
+      <tr><td>Doppelganger Card ⭐</td><td class="num">0.02%</td></tr>
+    </table></div>
+    </section>
+    </article>
+
+    <!-- ===================== DUNGEON ===================== -->
+    <article id="dungeon">
+    <p class="crumb">กิจกรรม</p>
+    <h1>เควส & ดันเจี้ยน</h1>
+    <p class="lead">เควสรายวัน ล่ามอน และดันเจี้ยนพิเศษ</p>
+
+    <section data-s>
+    <h2 id="questmaster">📋 Quest Master (เควสรายวัน)<a class="hash" href="#questmaster">#</a></h2>
+    <p><span class="loc">morocc 120,105</span> รับได้ <b>วันละ 1 ครั้งต่อไอดี</b> รีเซ็ต 00:00</p>
+    <ol>
+      <li>ฆ่ามอนเลเวลไม่ต่ำกว่า (เลเวลตัวเอง − 20) 100 ตัว</li>
+      <li>ส่ง Apple x30</li>
+      <li>ฆ่ามอน 200 ตัว</li>
+      <li>ฆ่ามอน 300 ตัว</li>
+    </ol>
+    <p>รางวัล: <b>Cash Coin (เหรียญ 10) x3 + Old Blue Box x2 + 500,000z</b></p>
+    </section>
+
+    <section data-s>
+    <h2 id="hunting">🏹 Hunting Missions<a class="hash" href="#hunting">#</a></h2>
+    <p><span class="loc">prontera 152,187</span> สุ่มมอน 4 ชนิดในช่วงเลเวล (Lv−25 ถึง Lv+10) ชนิดละ 40–70 ตัว · ปาร์ตี้ที่อยู่ใกล้กันนับคิลร่วมได้ · คูลดาวน์ <b>12 ชม.</b></p>
+    <p>ทำเสร็จได้ Base/Job EXP + Zeny + Mission Points เอาแต้มไปแลกของ:</p>
+    <div class="tw"><table>
+      <tr><th>ของ</th><th>แต้ม</th><th>ของ</th><th>แต้ม</th></tr>
+      <tr><td>Etel Dust</td><td class="num">3</td><td>Convex Mirror</td><td class="num">20</td></tr>
+      <tr><td>Token of Siegfried / Life Insurance</td><td class="num">10</td><td>HD Oridecon / HD Elunium</td><td class="num">25</td></tr>
+      <tr><td>Old Blue Box</td><td class="num">12</td><td>Bloody Branch</td><td class="num">50</td></tr>
+      <tr><td>Bubble Gum / Battle Manual</td><td class="num">15</td><td>Old Purple Box</td><td class="num">60</td></tr>
+      <tr><td>Old Card Album</td><td class="num">250</td><td>Blacksmith Blessing</td><td class="num">400</td></tr>
+      <tr><td>Gym Pass</td><td class="num">800</td><td></td><td></td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="bossroom">👹 ห้องล่าบอส<a class="hash" href="#bossroom">#</a></h2>
+    <p><span class="loc">morocc 167,78</span> ต้อง Lv 90+ · ค่าเข้า <b>5,000,000z + 500 Cash Point</b> · <b>50 ครั้งต่อไอดีต่อวัน</b> อยู่ได้ครั้งละ 40 นาที</p>
+    <ul>
+      <li>บอส/MVP 41 ตัว เกิดใหม่ทุก 5 วินาที บอสแกร่งขึ้น: HP x10, ATK x5, DEF +150, MDEF +80</li>
+      <li>ในห้องทุก 3 วินาที เสีย HP 6% (ไม่ตาย) ติด Critical Wound และมีโอกาสติด Silence / Stun</li>
+      <li>ดรอปพิเศษ: Cash Coin เหรียญ 10 (1%) · Cash Coin เหรียญ 100 (0.01%)</li>
+    </ul>
+    <div class="warn">⚠️ ต้อง <b>จุติ 20 รอบขึ้นไป</b> ถึงจะทำดาเมจบอสในห้องนี้ได้</div>
+    </section>
+
+    <section data-s>
+    <h2 id="etower">🗼 ดัน 100 ชั้น (Endless Tower)<a class="hash" href="#etower">#</a></h2>
+    <p><span class="loc">morocc 206,102</span> วาร์ปไป e_tower แล้วคุย Tower Protection Stone</p>
+    <ul>
+      <li>ต้องมีปาร์ตี้ หัวปาร์ตี้เป็นคนสร้าง · อยู่ในดันได้ 4 ชม. · คูลดาวน์ <b>7 วัน</b></li>
+      <li>ใช้ Ashes of Darkness x1 / x2 / x3 ลัดไปชั้น 26 / 51 / 76 · บอสชั้นสุดท้าย Nacht Sieger</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="special-dun">🌀 ดันพิเศษ (pvp_room)<a class="hash" href="#special-dun">#</a></h2>
+    <p>ไปทาง Warper เมนู "ทางเข้าห้องดันพิเศษ"</p>
+    <div class="tw"><table>
+      <tr><th>ดัน</th><th>จุด</th><th>สถานะ</th></tr>
+      <tr><td>Illusion 17.1 (Rudus ชั้น 1–3)</td><td>pvp_room 29,85</td><td>เปิด · เข้าฟรี</td></tr>
+      <tr><td>Banquet 17.2</td><td>pvp_room 38,85</td><td><span class="soon">เร็ว ๆ นี้</span></td></tr>
+      <tr><td>Oz 18.1</td><td>pvp_room 47,85</td><td><span class="soon">เร็ว ๆ นี้</span></td></tr>
+      <tr><td>Ice Dungeon (Crystal)</td><td>pvp_room 54,84</td><td><span class="soon">เร็ว ๆ นี้</span></td></tr>
+    </table></div>
+    <h3>แลกชุด Illusion 17.1 <span class="loc">pvp_room 27,78</span></h3>
+    <div class="tw"><table>
+      <tr><th>ของ</th><th>ค่าแลก</th></tr>
+      <tr><td>Armor A/B · Shield I/II</td><td>5,000,000z + Illusion Stone 100</td></tr>
+      <tr><td>Engine A/B · Leg A/B</td><td>3,000,000z + Illusion Stone 80</td></tr>
+      <tr><td>Booster R/L · Battle Chip R/L</td><td>6,000,000z + Illusion Stone 120</td></tr>
+      <tr><td>กล่องอาวุธสุ่ม 17.1 (1 ใน 16)</td><td>10,000,000z + Illusion Stone 200</td></tr>
+    </table></div>
+    <div class="note">Illusion Stone ซื้อได้ที่ร้านราคาคงที่ 65,000z</div>
+    </section>
+
+    <section data-s>
+    <h2 id="honor">⚰️ Honor Dungeon<a class="hash" href="#honor">#</a></h2>
+    <p>เข้าทาง Warper (Tomb of the Fallen 2 / lhz_dun_n2) บอส 28 ตัว (MVP Bio Lab + Randgris, Ifrit, Beelzebub ฯลฯ) <b>Lv250 HP x3 ATK x3</b> ตายแล้วเกิดใหม่ทันที — สำหรับสายแกร่ง</p>
+    </section>
+
+    <section data-s>
+    <h2 id="biosphere">🌋 EP17.2 Biosphere<a class="hash" href="#biosphere">#</a></h2>
+    <p>เข้าทาง Warper — bl_death / bl_grass / bl_ice / bl_lava แต่ละแมพมี MVP 1 ตัว (Lord of Death / Mistress / Ktullanux / Detardeurus) เกิดใหม่ทุก ~6 ชม.</p>
+    </section>
+    </article>
+
+    <!-- ===================== PVP ===================== -->
+    <article id="pvp">
+    <p class="crumb">กิจกรรม</p>
+    <h1>PvP · WoE · กิลด์</h1>
+    <p class="lead">ตีกัน ยึดปราสาท และระบบกิลด์</p>
+
+    <section data-s>
+    <h2 id="pvproom">⚔️ PvP Room<a class="hash" href="#pvproom">#</a></h2>
+    <p><span class="loc">morocc 185,80</span> เข้าฟรี · ทุกห้องไม่ดรอปของ เทเลพอร์ตไม่ได้</p>
+    <div class="tw"><table>
+      <tr><th>ห้อง</th><th>คน</th></tr>
+      <tr><td>Death Match — ตายแล้วเกิดในที่ ฟื้นเต็ม + บัฟ</td><td class="num">100</td></tr>
+      <tr><td>Izlude</td><td class="num">100</td></tr>
+      <tr><td>Prontera</td><td class="num">100</td></tr>
+      <tr><td>1 vs 1</td><td class="num">2</td></tr>
+      <tr><td>2 vs 2</td><td class="num">4</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="woe">🏰 War of Emperium<a class="hash" href="#woe">#</a></h2>
+    <p><span class="loc">WOE Information · morocc 196,102</span></p>
+    <div class="tw"><table>
+      <tr><th>วัน</th><th>เวลา</th><th>ปราสาท</th></tr>
+      <tr><td>พุธ</td><td class="num">21:00–23:00</td><td>Payon 1–5</td></tr>
+      <tr><td>เสาร์</td><td class="num">20:00–22:00</td><td>Prontera 1–5</td></tr>
+    </table></div>
+    <ul>
+      <li>กิลด์ที่ครองปราสาทได้ <b>Elite Siege Supply Box x1 + Old Blue Box x5</b> ให้สมาชิกที่ออนไลน์ (1 ชุดต่อ IP ต่อปราสาท)</li>
+      <li>คนไม่มีกิลด์เข้าปราสาทไม่ได้</li>
+    </ul>
+    <div class="note">WoE ครั้งแรก: เสาร์ 28 พ.ย. 2026 เวลา 20:00</div>
+    </section>
+
+    <section data-s>
+    <h2 id="guild-exp">💰 บริจาคกิลด์<a class="hash" href="#guild-exp">#</a></h2>
+    <p><span class="loc">morocc 165,122</span> เลเวลกิลด์ขึ้นจากการบริจาคเท่านั้น</p>
+    <ul>
+      <li>Zeny 1 = 1 Guild EXP (ไม่มีค่าบริการ)</li>
+      <li>Emperium 1 = 10,000 EXP (ค่าบริการ 2,500z)</li>
+      <li>ไอเทมพิเศษสุ่มเปลี่ยนทุก 10 นาที (ค่าบริการ 2,500z) เช่น Scale Shell 72, Scell 50, Jellopy 30 EXP ต่อชิ้น</li>
+      <li>ดูอันดับผู้บริจาค Top 10 ได้ ประกาศในกิลด์ทุกครั้งที่บริจาค</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="guild-buff">🛡️ บัฟกิลด์<a class="hash" href="#guild-buff">#</a></h2>
+    <p><span class="loc">prontera 155,185</span> ได้อัตโนมัติตอนล็อกอินด้วย อยู่ 24 ชม. (หายตอนออกเกม)</p>
+    <div class="tw"><table>
+      <tr><th>เลเวลกิลด์</th><th>ขั้น</th><th>โบนัส</th></tr>
+      <tr><td>1–10</td><td class="num">1</td><td rowspan="5">ขั้นละ ATK/MATK +2%, All Stats +2, EXP/Drop +2%, ฟื้น HP/SP +2%, น้ำหนัก +1,000<br>(ขั้น 5 = +10% / +10 / +5,000)</td></tr>
+      <tr><td>11–20</td><td class="num">2</td></tr>
+      <tr><td>21–30</td><td class="num">3</td></tr>
+      <tr><td>31–40</td><td class="num">4</td></tr>
+      <tr><td>41+</td><td class="num">5</td></tr>
+    </table></div>
+    </section>
+    </article>
+
+    <!-- ===================== SERVICE ===================== -->
+    <article id="service">
+    <p class="crumb">เมือง & เศรษฐกิจ</p>
+    <h1>บริการในเมือง</h1>
+    <p class="lead">NPC บริการส่วนใหญ่อยู่ใน Morocc และมีหลายจุดทั่วเมือง</p>
+
+    <section data-s>
+    <h2 id="heal">💚 Heal AB (ฮีล + บัฟ)<a class="hash" href="#heal">#</a></h2>
+    <p><span class="loc">morocc 157,97</span> และอีกหลายจุดในเมือง · Lv ต่ำกว่า 70 ฟรี · Lv 70+ ครั้งละ 2,000z</p>
+    <ul>
+      <li>ฮีล HP/SP เต็ม · ซ่อมของ · ล้างสถานะผิดปกติ · ตรวจของทุกชิ้นในกระเป๋า</li>
+      <li>บัฟ: Blessing 10, Agi Up 10, Kyrie, Magnificat, Assumptio, Renovatio, Expiatio, Epiclesis, Impositio, Full Chemical Protection, Endure</li>
+      <li>บัฟอยู่ 5 นาที · <b>VIP อยู่ 1 ชม.</b></li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="kafra">📦 Kafra<a class="hash" href="#kafra">#</a></h2>
+    <p><span class="loc">morocc 160,97</span> และอีกหลายจุด ฟรี — เซฟจุดเกิด · เปิดคลัง · คลังกิลด์ (ใส่รหัส) · เรียกลูกกิลด์/ปาร์ตี้ (หัวกิลด์/หัวปาร์ตี้)</p>
+    </section>
+
+    <section data-s>
+    <h2 id="warper">🌐 Warper<a class="hash" href="#warper">#</a></h2>
+    <p><span class="loc">morocc 163,97</span> และอีกหลายจุด · วาร์ปไป เมือง / ฟิลด์ / ดันเจี้ยน / ปราสาท / ดันพิเศษ · เมนู "วาร์ปล่าสุด" ไม่เสียเงิน</p>
+    </section>
+
+    <section data-s>
+    <h2 id="reset">🔄 รีเซ็ตสเตตัส / สกิล<a class="hash" href="#reset">#</a></h2>
+    <p><span class="loc">morocc 187,60</span> รีเซ็ตสกิล 2,000,000z · รีเซ็ตสเตตัส 2,000,000z · รีเซ็ตทั้งคู่ 3,500,000z ไม่จำกัดครั้ง</p>
+    </section>
+
+    <section data-s>
+    <h2 id="skills">📘 สกิลเสริม & อุปกรณ์สกิล<a class="hash" href="#skills">#</a></h2>
+    <ul>
+      <li><b>เรียนสกิลเสริมทักษะ</b> <span class="loc">morocc 166,111</span> ฟรี — ได้สกิลเควสของสายตัวเองถาวร (First Aid, Charge Arrow, Greed, Redemptio ฯลฯ)</li>
+      <li><b>รับอุปกรณ์สกิลเสริม</b> <span class="loc">morocc 150,108</span> อย่างละ 10,000z — เพโค / รถเข็น / ฟอลคอน / วอร์ก / มังกร / กริฟฟอน / มาโดเกียร์ (ต้องมีสกิลก่อน)</li>
+      <li><b>Shadow Master</b> <span class="loc">morocc 165,115</span> สำหรับ Rogue / Stalker / Shadow Chaser เลือกสกิลจดจำ — คลาส 1: 100z · คลาส 2: 1,000z · คลาส 3: 10,000z</li>
+      <li><b>โซลลิงเกอร์รับจ้าง</b> <span class="loc">morocc 151,97</span> 50,000z ได้ Soul Link Lv5 ตามสายอาชีพ + Kaahi Lv7 อยู่ 30 นาที</li>
+      <li><b>Rune Sage</b> <span class="loc">morocc 151,83</span> เปิดหน้าต่าง Rune: สลายการ์ดเป็น Rune / ใช้และอัปเกรดแท็บเล็ต</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="misc-service">🧰 บริการอื่น ๆ<a class="hash" href="#misc-service">#</a></h2>
+    <ul>
+      <li><b>ยิมเพิ่มน้ำหนัก</b> <span class="loc">morocc 117,78</span> ใช้ Gym Pass 1 ใบ = +200 น้ำหนัก สูงสุด 10 ขั้น (+2,000)</li>
+      <li><b>Super Stylist</b> <span class="loc">morocc 119,93</span> ฟรี เปลี่ยนทรงผม สีผม สีชุด</li>
+      <li><b>บริการเช็คไอเทม</b> <span class="loc">morocc 155,122</span> ฟรี พิมพ์ ID ไอเทม บอกว่าทั้งเซิร์ฟมีกี่ชิ้น</li>
+      <li><b>ประกาศข่าวสาร</b> <span class="loc">morocc 175,98</span> 500,000z ต่อครั้ง ประกาศทั้งเซิร์ฟสีทอง (2–100 ตัวอักษร)</li>
+      <li><b>ห้องทดสอบดาเมจ</b> <span class="loc">morocc 140,87</span> ฟรี ตั้งค่าเสาได้ (ขนาด เลเวล เผ่า ธาตุ สเตตัส หรือก๊อปค่าจากมอน) บอก DPS ทุก 5 วินาที</li>
+    </ul>
+    </section>
+    </article>
+
+    <!-- ===================== SHOP ===================== -->
+    <article id="shop">
+    <p class="crumb">เมือง & เศรษฐกิจ</p>
+    <h1>ร้านค้า & การ์ด</h1>
+    <p class="lead">ร้าน NPC และระบบแลกการ์ด</p>
+
+    <section data-s>
+    <h2 id="toolshop">🧪 ร้านของใช้<a class="hash" href="#toolshop">#</a></h2>
+    <p><span class="loc">ของใช้ต่าง ๆ · morocc 154,97</span> และอีกหลายจุด — ยาแดง 50 · ส้ม 200 · เหลือง 550 · ขาว 1,200 · ฟ้า 5,000 · Fly Wing 60 · ลูกธนู กระสุน คุไน · Pet Incubator 10,000</p>
+    <ul>
+      <li><b>แร่ ปรุงยา สัตว์เลี้ยง</b> <span class="loc">morocc 147,102</span> — แร่ตีอาวุธ · ของปรุงยา · อาหารสัตว์เลี้ยง</li>
+      <li><b>ร้านอุปกรณ์เริ่มต้น</b> <span class="loc">morocc 144,101</span> — เกราะและอาวุธพื้นฐานทุกสาย</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="fixprice">🏷️ ร้านราคาคงที่<a class="hash" href="#fixprice">#</a></h2>
+    <p><span class="loc">morocc 150,105</span> ซื้อด้วย Zeny <b>ไม่มีส่วนลด</b></p>
+    <div class="tw"><table>
+      <tr><th>ของ</th><th>ราคา (z)</th></tr>
+      <tr><td>Cash Coin / เหรียญ 10 / เหรียญ 100</td><td class="num">30,000 / 300,000 / 3,000,000</td></tr>
+      <tr><td>Etel Dust</td><td class="num">12,000</td></tr>
+      <tr><td>Elunium / Oridecon</td><td class="num">15,000</td></tr>
+      <tr><td>Illusion Stone</td><td class="num">65,000</td></tr>
+      <tr><td>Carnium / Bradium</td><td class="num">75,000</td></tr>
+      <tr><td>Greed Clip</td><td class="num">5,000</td></tr>
+      <tr><td>Adventurer's Backpack · Archangel Wings · Fallen Angel Wing · Amistr Bag</td><td class="num">995,000</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="cardrecycle">🔀 ตู้ผสมการ์ด (Card Recycle)<a class="hash" href="#cardrecycle">#</a></h2>
+    <p><span class="loc">morocc 173,49</span> ใส่การ์ด 3 แบบไม่ซ้ำกัน + 200,000z → สุ่มการ์ดใหม่ 1 ใบ (ID 4001–4331) · การ์ด MVP ใส่ไม่ได้และไม่สุ่มออก</p>
+    </section>
+
+    <section data-s>
+    <h2 id="cardtrade">♻️ แลกการ์ดขยะ<a class="hash" href="#cardtrade">#</a></h2>
+    <p><span class="loc">morocc 167,59</span> ขายการ์ดเป็นแต้ม — การ์ดทั่วไป 1 แต้ม · การ์ด MVP 100 แต้ม</p>
+    <div class="tw"><table>
+      <tr><th>แลกเป็น</th><th>แต้ม</th></tr>
+      <tr><td>Etel Dust</td><td class="num">10</td></tr>
+      <tr><td>Red Phantom Resonance Stone</td><td class="num">10</td></tr>
+      <tr><td>Oridecon / Elunium / Cash Coin</td><td class="num">1</td></tr>
+    </table></div>
+    </section>
+    </article>
+
+    <!-- ===================== CASH ===================== -->
+    <article id="cash">
+    <p class="crumb">เมือง & เศรษฐกิจ</p>
+    <h1>Cash · VIP · Member</h1>
+    <p class="lead">เติมเงิน สิทธิ์ VIP และระดับสมาชิก</p>
+
+    <section data-s>
+    <h2 id="topup">💳 เติมเงิน<a class="hash" href="#topup">#</a></h2>
+    <ul>
+      <li>อัตรา <b>1 บาท = 10 Cash Point</b></li>
+      <li>โอนผ่าน TrueMoney / พร้อมเพย์ แล้วแจ้งสลิปใน Discord</li>
+    </ul>
+    <h3>รับของเติมเงินสะสม <span class="loc">morocc 168,97</span></h3>
+    <p>รับได้ขั้นละ 1 ครั้งต่อไอดี ตามยอดเติมสะสม</p>
+    <div class="tw"><table>
+      <tr><th>ยอดสะสม (บาท)</th><th>ของรางวัล</th></tr>
+      <tr><td class="num">100</td><td>Adventurer Coin x10</td></tr>
+      <tr><td class="num">300</td><td>Adventurer Coin x30 + Battle Medal x3</td></tr>
+      <tr><td class="num">500</td><td>Adventurer Coin x50 + Boss Slayer Coin x5</td></tr>
+      <tr><td class="num">1,000</td><td>Boss Slayer Coin x10 + Old Card Album x1</td></tr>
+      <tr><td class="num">3,000</td><td>Boss Slayer Coin x30 + Old Card Album x3</td></tr>
+      <tr><td class="num">5,000</td><td>Boss Slayer Coin x50 + Bloody Branch x5</td></tr>
+      <tr><td class="num">10,000</td><td>Boss Slayer Coin x100 + Bloody Branch x10</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="member">🎖️ Member Club<a class="hash" href="#member">#</a></h2>
+    <p>ระดับขึ้นตามยอดเติมสะสม ได้โบนัสอัตโนมัติตอนล็อกอิน · โอนยอดสะสมให้ไอดีอื่นได้ที่ <span class="loc">โอนแต้ม Member · morocc 168,106</span></p>
+    <div class="tw"><table>
+      <tr><th>ระดับ</th><th>ยอดสะสม (บาท)</th><th>EXP / Drop</th><th>โบนัสเพิ่ม</th></tr>
+      <tr><td>Lv1</td><td>1,000</td><td class="num">+3%</td><td>–</td></tr>
+      <tr><td>Lv2</td><td>2,000</td><td class="num">+5%</td><td>–</td></tr>
+      <tr><td>Lv3</td><td>3,000</td><td class="num">+7%</td><td>–</td></tr>
+      <tr><td>Lv4</td><td>4,000</td><td class="num">+10%</td><td>–</td></tr>
+      <tr><td>Lv5</td><td>5,000</td><td class="num">+13%</td><td>น้ำหนัก +2,000, ATK/MATK +20</td></tr>
+      <tr><td>Lv6</td><td>6,000</td><td class="num">+16%</td><td>น้ำหนัก +3,000, ATK/MATK +30</td></tr>
+      <tr><td>Lv7</td><td>7,000</td><td class="num">+20%</td><td>น้ำหนัก +4,000, ATK/MATK +40</td></tr>
+      <tr><td>Lv8</td><td>10,000</td><td class="num">+25%</td><td>น้ำหนัก +5,000, ATK/MATK +60</td></tr>
+      <tr><td>Lv9</td><td>15,000</td><td class="num">+30%</td><td>น้ำหนัก +7,000, ATK/MATK +80</td></tr>
+      <tr><td>Lv10</td><td>20,000</td><td class="num">+40%</td><td>น้ำหนัก +10,000, ATK/MATK +120, เติมได้ Cash เพิ่ม 10%, Autoloot อัตโนมัติ</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="vip">👑 VIP<a class="hash" href="#vip">#</a></h2>
+    <p>ใช้ <b>VIP Ticket 7 วัน</b> (Cash Shop 300 Cash หรือคราฟที่ Craft Master 50M z) · ใช้ซ้อนตอน VIP ยังไม่หมดไม่ได้</p>
+    <ul>
+      <li>Base / Job EXP <b>+20%</b> · Drop <b>+20%</b></li>
+      <li>คลังเพิ่ม <b>+300 ช่อง</b></li>
+      <li>แต้ม Gold PC x2 · บัฟ Heal AB อยู่ 1 ชม.</li>
+    </ul>
+    <div class="note">วันหมดอายุ VIP แสดงตอนล็อกอิน</div>
+    </section>
+
+    <section data-s>
+    <h2 id="premium">⭐ Premium Service<a class="hash" href="#premium">#</a></h2>
+    <p>เปิดผ่านไอเทม Premium Service Staff จ่ายด้วย Silvervine Fruit (Cash Shop ลูกละ 2 Cash)</p>
+    <div class="tw"><table>
+      <tr><th>บริการ</th><th>ระยะ</th><th>ราคา</th></tr>
+      <tr><td>Base/Job EXP +30%</td><td>1 วัน</td><td>Silvervine 4</td></tr>
+      <tr><td>Drop +30%</td><td>1 วัน</td><td>Silvervine 2</td></tr>
+      <tr><td>ประกันตาย 50%</td><td>1 วัน</td><td>Silvervine 1</td></tr>
+      <tr><td>ครบทุกอย่าง</td><td>1 วัน</td><td>Silvervine 6</td></tr>
+      <tr><td>Buff Service (Bless / Agi / Angelus / Gloria / Magnificat)</td><td>15 นาที</td><td>1,500z</td></tr>
+      <tr><td>อาหาร All Stats +7</td><td>30 นาที</td><td>5,000z</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="cashshop">🛒 Cash Shop<a class="hash" href="#cashshop">#</a></h2>
+    <div class="tw"><table>
+      <tr><th>แท็บ</th><th>ตัวอย่าง (ราคา Cash)</th></tr>
+      <tr><td>New</td><td>Cash Coin 1 · Premium Box 7 วัน 50 · Silvervine 2 · Gym Pass 10 · Enriched Elu/Ori 25 · VIP Ticket 7 วัน 300</td></tr>
+      <tr><td>Hot</td><td>Figure อาชีพ ชิ้นละ 50</td></tr>
+      <tr><td>Permanent</td><td>หมวกแฟชั่น ชิ้นละ 150</td></tr>
+      <tr><td>Limited</td><td>Bloody Branch 30 · Blacksmith Blessing 50 · Deviling Package</td></tr>
+      <tr><td>Scrolls</td><td>Bubble Gum / Battle Manual / Bragi 5</td></tr>
+      <tr><td>Consumables</td><td>Shadow Hammer / Mix 20 · Cube Shadow</td></tr>
+    </table></div>
+    </section>
+
+    <section data-s>
+    <h2 id="goldpc">⏱️ Gold PC (แต้มออนไลน์)<a class="hash" href="#goldpc">#</a></h2>
+    <p>ออนไลน์ 1 ชม. ได้ 1 แต้ม (VIP x2) เก็บได้สูงสุด 300 แต้ม · ใช้ได้ตั้งแต่ Lv90</p>
+    <p>ร้านแต้ม: Megaphone 3 · Bubble Gum 5 · Token of Siegfried 5 · กล่องชาร์ม Greed / Craft Dust / Drop 3 ชม. อย่างละ 10</p>
+    </section>
+    </article>
+
     <p id="empty" class="hide" style="color:var(--muted)">ไม่เจอหัวข้อที่ค้นหา</p>
-    <footer>Mythra Online : Global · ข้อมูลดึงจากค่าเซิร์ฟจริง อัปเดต 31 ต.ค. 2026</footer>
+    <nav class="pager" id="pager"></nav>
+    <footer>Mythra Online : Global · ข้อมูลดึงจากค่าเซิร์ฟและสคริปต์จริง อัปเดต 31 ต.ค. 2026 · ข้อมูลอาจเปลี่ยนตามแพตช์</footer>
   </main>
 
-  <aside class="toc"><p>ON THIS PAGE</p></aside>
+  <aside class="toc"><p>ON THIS PAGE</p><div id="tocList"></div></aside>
 </div>
 
 <script>
-const sections=[...document.querySelectorAll('main h2')];
-const toc=document.querySelector('aside.toc');
-sections.forEach(h=>{const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.firstChild.textContent.trim();toc.appendChild(a)});
-const links=[...document.querySelectorAll('aside.toc a, nav.side a')];
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))})},{rootMargin:'-70px 0px -70% 0px'});
-sections.forEach(h=>io.observe(h));
+const pages=[...document.querySelectorAll('main article')];
+const navLinks=[...document.querySelectorAll('nav.side a')];
+const tocList=document.getElementById('tocList');
+const pager=document.getElementById('pager');
+const banner=document.querySelector('.banner');
+let io;
+
+function pageOf(id){
+  const el=id&&document.getElementById(id);
+  if(!el)return pages[0];
+  return el.tagName==='ARTICLE'?el:el.closest('article')||pages[0];
+}
+function show(id,scroll){
+  const page=pageOf(id);
+  pages.forEach(p=>p.classList.toggle('show',p===page));
+  banner.classList.toggle('hide',page!==pages[0]);
+  navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+page.id));
+  const heads=[...page.querySelectorAll('h2')];
+  tocList.innerHTML='';
+  heads.forEach(h=>{const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.firstChild.textContent.trim();tocList.appendChild(a)});
+  if(io)io.disconnect();
+  const tl=[...tocList.querySelectorAll('a')];
+  io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)tl.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))})},{rootMargin:'-70px 0px -70% 0px'});
+  heads.forEach(h=>io.observe(h));
+  const i=pages.indexOf(page),prev=pages[i-1],next=pages[i+1];
+  const t=p=>p.querySelector('h1').textContent;
+  pager.innerHTML=(prev?`<a href="#${prev.id}"><small>ก่อนหน้า</small>${t(prev)}</a>`:'<span></span>')+(next?`<a class="next" href="#${next.id}"><small>ถัดไป</small>${t(next)}</a>`:'');
+  document.title=(page===pages[0]?'':t(page)+' | ')+'Mythra Wiki';
+  if(scroll){const el=document.getElementById(id);if(el&&el!==page)el.scrollIntoView();else scrollTo(0,0)}
+}
+addEventListener('hashchange',()=>{q.value='';resetSearch();show(location.hash.slice(1),true)});
 document.getElementById('menuBtn').onclick=()=>document.getElementById('side').classList.toggle('open');
-document.querySelectorAll('nav.side a').forEach(a=>a.addEventListener('click',()=>document.getElementById('side').classList.remove('open')));
+navLinks.forEach(a=>a.addEventListener('click',()=>document.getElementById('side').classList.remove('open')));
+
 const q=document.getElementById('q');
+function resetSearch(){
+  document.querySelectorAll('section[data-s]').forEach(s=>s.classList.remove('hide'));
+  document.getElementById('empty').classList.add('hide');
+  pager.classList.remove('hide');
+}
 q.addEventListener('input',()=>{
-  const t=q.value.trim().toLowerCase();let n=0;
-  document.querySelectorAll('section[data-s]').forEach(s=>{const hit=!t||s.textContent.toLowerCase().includes(t);s.classList.toggle('hide',!hit);n+=hit});
+  const t=q.value.trim().toLowerCase();
+  if(!t){resetSearch();show(location.hash.slice(1)||'home',false);return}
+  let n=0;
+  pages.forEach(p=>{
+    let hit=0;
+    p.querySelectorAll('section[data-s]').forEach(s=>{const h=s.textContent.toLowerCase().includes(t);s.classList.toggle('hide',!h);hit+=h});
+    p.classList.toggle('show',hit>0);n+=hit;
+  });
+  banner.classList.add('hide');pager.classList.add('hide');
   document.getElementById('empty').classList.toggle('hide',n>0);
 });
 addEventListener('keydown',e=>{if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();q.focus()}});
+show(location.hash.slice(1)||'home',!!location.hash);
 </script>
 </body>
 </html>
