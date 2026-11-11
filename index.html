@@ -117,6 +117,7 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
     <h4>อุปกรณ์</h4>
     <a href="#refine">ระบบตีบวก</a>
     <a href="#enchant">ออฟชั่น & เจาะรู</a>
+    <a href="#rune">ระบบ Rune</a>
     <h4>พัฒนาตัวละคร</h4>
     <a href="#charm">ระบบชาร์ม</a>
     <a href="#growth">จุติ ยศ & สะสม</a>
@@ -290,6 +291,8 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
       <tr><td><code>@load</code></td><td>วาร์ปกลับจุดเซฟ (ใช้ในคุก, PvP, GvG ไม่ได้)</td></tr>
       <tr><td><code>@bosswarp</code></td><td>วาร์ปไปหา World Boss ขณะบอสยังอยู่</td></tr>
       <tr><td><code>@viptime</code></td><td>ดูวันหมดอายุ VIP</td></tr>
+      <tr><td><code>@oreshop</code></td><td>ดูว่าร้านแร่หมุนเวียนรอบนี้อยู่เมืองไหน — <a href="#oreshop">รายละเอียด</a></td></tr>
+      <tr><td><code>@refineevent</code></td><td>ดูว่ากิจกรรมตีบวกเปิดอยู่ไหม และโอกาสสะสมของตัวเอง — <a href="#refineevent">รายละเอียด</a></td></tr>
     </table></div>
     </section>
 
@@ -327,6 +330,7 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
       <tr><td class="num">12:00</td><td>World Boss · Lucky Rooms</td></tr>
       <tr><td class="num">15:00 · 16:00 · 17:00</td><td>ทอยเต๋า</td></tr>
       <tr><td class="num">18:00</td><td>Lucky Rooms · เดิมพันมวยจีน</td></tr>
+      <tr><td class="num">18:00–00:00</td><td>ร้านแร่หมุนเวียน เปิด (สุ่มเมืองทุกวัน) — <a href="#oreshop">รายละเอียด</a></td></tr>
       <tr><td class="num">19:00 · 22:00</td><td>ทอยเต๋า</td></tr>
       <tr><td class="num">23:59</td><td>ปิดรอบประมูล + เปิดรอบใหม่</td></tr>
     </table></div>
@@ -349,6 +353,36 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
     <p class="crumb">อุปกรณ์</p>
     <h1>ระบบตีบวกอุปกรณ์</h1>
     <p class="lead"><span class="loc">Upgrade Equipment · morocc 146,54</span> เปิดหน้าต่างตีบวก เลือกแร่และใส่ Blacksmith Blessing ได้ในหน้าต่าง · ตีได้สูงสุด <b>+20</b></p>
+
+    <section data-s>
+    <h2 id="refineevent">🎉 กิจกรรมตีบวก<a class="hash" href="#refineevent">#</a></h2>
+    <p>เปิดเป็นช่วงกิจกรรม ประกาศทั้งเซิร์ฟตอนเปิด/ปิด · พิมพ์ <code>@refineevent</code> ดูว่าเปิดอยู่ไหม</p>
+    <ul>
+      <li>ตีบวกผ่านหน้าต่างตีบวก โอกาสสำเร็จ <b>+10%</b> ทุกครั้ง</li>
+      <li>ตีพลาด 1 ครั้ง ครั้งต่อไปได้เพิ่มอีก <b>+1%</b> สะสมไปเรื่อย ๆ จนกว่าจะตีสำเร็จ แล้วค่าสะสมกลับเป็น 0</li>
+      <li>ค่าสะสมนับต่อตัวละคร รวมทุกชิ้นที่ตี ออกเกมไม่หาย · % ที่โชว์ในหน้าต่างตีบวกรวมโบนัสแล้ว</li>
+    </ul>
+    <div class="note">ช่วงกิจกรรมปิด ไม่ได้โบนัสและไม่นับสะสม แต่ % ที่สะสมไว้ยังอยู่ใช้รอบหน้าได้ · ตีพลาดยังแตก/ลดขั้นตามปกติ</div>
+    </section>
+
+    <section data-s>
+    <h2 id="oreshop">⛏️ ร้านแร่หมุนเวียน<a class="hash" href="#oreshop">#</a></h2>
+    <p>เปิดทุกวัน <b>18:00–00:00</b> · ทุกรอบ <b>สุ่มเมือง</b> 1 ใน 25 เมือง ยืนข้าง Healer ของเมืองนั้น · ประกาศตอนเปิดและทุกชั่วโมง · พิมพ์ <code>@oreshop</code> ดูว่าอยู่ไหน</p>
+    <p>ของที่ใช้แลก (แร่ 1 ชนิด + ของดรอป 1 ชนิด) <b>สุ่มใหม่ทุกวัน</b> · แลกสำเร็จ 100%</p>
+    <div class="tw"><table>
+      <tr><th>ของที่ได้</th><th>สต็อกทั้งเซิร์ฟ/รอบ</th><th>ต่อไอดี/รอบ</th><th>ใช้แลก (ต่อ 1 ชิ้น)</th></tr>
+      <tr><td>Enriched Elunium / Oridecon</td><td class="num">50</td><td class="num">10</td><td>แร่ขั้นต้น x5 + ขยะ x20</td></tr>
+      <tr><td>HD Elunium / Oridecon</td><td class="num">50</td><td class="num">10</td><td>Oridecon/Elunium/Steel x3 + ขยะ x40</td></tr>
+      <tr><td>HD Carnium / HD Bradium</td><td class="num">50</td><td class="num">10</td><td>Carnium/Bradium/Oridecon/Elunium x3 + ขยะ x60</td></tr>
+      <tr><td>Blacksmith Blessing</td><td class="num">20</td><td class="num">5</td><td>Carnium/Bradium/Oridecon/Elunium x5 + ขยะ x100</td></tr>
+      <tr><td>Occult Cube</td><td class="num">20</td><td class="num">3</td><td>Carnium/Bradium x5 + ของดรอปยาก x3</td></tr>
+      <tr><td>Mystical Cube</td><td class="num">10</td><td class="num">2</td><td>Carnium/Bradium x10 + ของดรอปยาก x6</td></tr>
+      <tr><td>Glowing Cube</td><td class="num">5</td><td class="num">1</td><td>Carnium/Bradium x20 + ของดรอปยาก x10</td></tr>
+      <tr><td>Bright Cube</td><td class="num">2</td><td class="num">1</td><td>Carnium/Bradium x30 + ของดรอปยาก x20</td></tr>
+    </table></div>
+    <div class="note">แร่ขั้นต้น = Rough Oridecon/Elunium, Phracon, Emveretarcon, Iron Ore, Coal · ขยะ = ของดรอปทั่วไป เช่น Jellopy, Fluff, Shell, Feather · ของดรอปยาก = Crystal Mirror, Witherless Rose, Frozen Rose, Rough Wind, Wind of Verdure, Boody Red, Cursed Seal, Tiger's Footskin</div>
+    <div class="warn">ของหมดแล้วรอรอบพรุ่งนี้ · เปิดสต็อกใหม่ตอน 18:00</div>
+    </section>
 
     <section data-s>
     <h2 id="ore">🪨 แร่ที่ใช้ & ค่าตีบวก<a class="hash" href="#ore">#</a></h2>
@@ -549,6 +583,48 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
     </section>
     </article>
 
+    <!-- ===================== RUNE ===================== -->
+    <article id="rune">
+    <p class="crumb">อุปกรณ์</p>
+    <h1>ระบบ Rune</h1>
+    <p class="lead"><span class="loc">Rune Sage · morocc 151,83</span> เปิดหน้าต่าง Rune: สลายการ์ด · เปิดเซ็ต Rune · ใส่หนังสือ · อัปเกรดเซ็ต</p>
+
+    <section data-s>
+    <h2 id="rune-decompo">🔮 สลายการ์ดเป็น Rune<a class="hash" href="#rune-decompo">#</a></h2>
+    <p>เอาการ์ดใส่แท็บสลายในหน้าต่าง Rune (การ์ดที่สลายได้ ~1,150 ใบ)</p>
+    <div class="tw"><table>
+      <tr><th>สลาย</th><th>ได้</th></tr>
+      <tr><td>การ์ด 1 ใบ</td><td>Imperfect Rune 1–3 (การ์ดบางกลุ่ม 3–6 หรือ 1–2)</td></tr>
+      <tr><td>การ์ดชนิดเดียวกัน 100 ใบ</td><td>Imperfect Rune 110–330 + ลุ้น Perfect Rune 1–2 (25%)</td></tr>
+    </table></div>
+    <div class="note">การ์ดบางกลุ่มสลาย 100 ใบได้ Imperfect 110–220 + ลุ้น Perfect 15%</div>
+    </section>
+
+    <section data-s>
+    <h2 id="rune-set">📜 เซ็ต & หนังสือ Rune<a class="hash" href="#rune-set">#</a></h2>
+    <ul>
+      <li>มี 14 เซ็ต (Episode 17 + เซ็ตอีเวนต์) ทุกเซ็ตต้องใช้ <b>Imperfect Rune</b> + <b>Perfect Rune</b> และของดรอปจากมอน Ep17 ในการเปิด</li>
+      <li>ใส่หนังสือ Rune ในเซ็ตเพื่อปลดเอฟเฟกต์ หนังสือใช้ของดรอป + ของ <b>Printed</b></li>
+      <li>รายละเอียดของที่ต้องใช้ของแต่ละเซ็ตดูได้ในหน้าต่าง Rune ในเกม</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="rune-shop">🏪 ร้านแลก Rune (ของ Printed)<a class="hash" href="#rune-shop">#</a></h2>
+    <p><span class="loc">ร้านแลก Rune · morocc 155,83</span> ข้าง Rune Sage — แลกของ Printed ที่หนังสือ 21 เล่มต้องใช้</p>
+    <ul>
+      <li>เลือกหนังสือ แล้วแลกทีละชิ้น หรือแลกครบทุกชิ้นของเล่มนั้นทีเดียว</li>
+      <li>ราคา <b>ชิ้นละ 200 Imperfect Rune</b></li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="rune-hard">⚠️ ของที่หายาก<a class="hash" href="#rune-hard">#</a></h2>
+    <div class="note">การ์ดบอสอินสแตนซ์ (Redpepper, Sweety, Aries, Gran Papilia, Bath Mermaid, Miguel, Papila H ฯลฯ) ตอนนี้ได้จากกล่องการ์ดเท่านั้น</div>
+    </section>
+
+    </article>
+
     <!-- ===================== CHARM ===================== -->
     <article id="charm">
     <p class="crumb">พัฒนาตัวละคร</p>
@@ -733,6 +809,23 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
       <li>ความสามารถจะทำงานเมื่อความสนิทถึงระดับในตาราง: <b>เขินอาย → ปกติ → สนิท → รักมาก</b></li>
       <li>ทุกตัวเก็บของที่ตกบนพื้นให้ด้วย</li>
     </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="pet-evo">🧬 วิวัฒนาการสาย MVP<a class="hash" href="#pet-evo">#</a></h2>
+    <p>สัตว์เลี้ยงความสนิท <b>รักมาก</b> + มีของครบ → กดปุ่ม Evolution ในหน้าต่างสัตว์เลี้ยง · สัตว์เลี้ยงที่วิวัฒน์แล้วเก็บของให้ทุกตัว</p>
+    <div class="tw"><table>
+      <tr><th>จาก</th><th>เป็น</th><th>ของที่ใช้</th><th>ความสามารถ (รักมาก)</th></tr>
+      <tr><td>Baphomet Jr.</td><td>Chaotic Baphomet Jr.</td><td>Chaos Baphomet Jr. Card 1 · Evil Horn 300 · Brigan 300 · Yellow Herb 100</td><td>MaxSP +3% · FLEE +15</td></tr>
+      <tr><td>Wicked Nymph</td><td>Bacsojin</td><td>Mightysoul Essence 30 · Civil Servant / Li Me Mang Ryang / Dancing Dragon Card อย่างละ 10</td><td>Delay หลังร่าย -3% · MaxSP +5%</td></tr>
+      <tr><td>Loli Ruri</td><td>Blue Moon Loli Ruri</td><td>Bat Cage 500 · Blue Herb 50 · Loki's Whispers 1 · Loli Ruri Card 10</td><td>MaxHP +5% · VIT +4</td></tr>
+      <tr><td>Leaf Cat</td><td>Wild Rose</td><td>Great Leaf 500 · Black Kitty Doll 200 · Fish Tail 200 · Leaf Cat Card 10</td><td>ASPD +5% · CRI +7</td></tr>
+      <tr><td>High Orc</td><td>Orc Hero</td><td>Mightysoul Essence 30 · Orc Warrior Card 10 · Orc Baby Card 10 · Voucher of Orcish Hero 10</td><td>ATK +7% · Crit DMG +3%</td></tr>
+      <tr><td>Hodremlin</td><td>Gloom Under Night</td><td>Hodremlin / Isilla / Agav Card อย่างละ 10 · Mightysoul Essence 30</td><td>MATK +40 · เวทไฟ/ผี +7%</td></tr>
+      <tr><td>Aliot</td><td>Kiel-D-01</td><td>Alicel / Aliza / Aliot Card อย่างละ 10 · Mightysoul Essence 30</td><td>ระยะใกล้ +5% · ASPD +7% · HIT +18</td></tr>
+      <tr><td>Dark Priest</td><td>Dark Illusion</td><td>Skull 500 · Rosary 1 · Sacred Marks 5 · Dark Priest Card 10</td><td>ตามตารางสัตว์เลี้ยงบอส</td></tr>
+      <tr><td>Nine Tail</td><td>Moonlight Flower</td><td>ตามหน้าต่างในเกม</td><td>ตามตารางสัตว์เลี้ยงบอส</td></tr>
+    </table></div>
     </section>
 
     <section data-s>
@@ -1224,14 +1317,17 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
 
     <section data-s>
     <h2 id="bossroom">👹 ห้องล่าบอส<a class="hash" href="#bossroom">#</a></h2>
-    <p><span class="loc">morocc 167,78</span> ต้อง Lv 90+ · ค่าเข้า <b>5,000,000z + 500 Cash Point</b> · <b>50 ครั้งต่อไอดีต่อวัน</b> อยู่ได้ครั้งละ 40 นาที</p>
+    <p><span class="loc">morocc 167,78</span> ต้อง Lv 90+ · ค่าเข้า <b>5,000,000z + 300 Cash Point</b> (Member Lv10+ เข้าฟรี) · <b>50 ครั้งต่อไอดีต่อวัน</b> อยู่ได้ครั้งละ <b>40 นาที</b> ครบแล้วโดนส่งออก</p>
     <ul>
-      <li>บอส/MVP 41 ตัว เกิดใหม่ทุก 5 วินาที บอสแกร่งขึ้น: HP x10, ATK x5, DEF +150, MDEF +80</li>
+      <li>บอส/MVP 46 ตัว เกิดใหม่ทุก 5 วินาที บอสแกร่งขึ้น: HP x10, ATK x5, DEF +150, MDEF +80 และในห้องนี้ <b>HP x2 · ATK x1.5</b> เพิ่มอีก</li>
+      <li><b>ไม่มีโทษดรอปตามเลเวล</b> ตัวเลเวลสูงได้ดรอปเต็ม</li>
+      <li><b>ดรอปโบนัส</b>: ฆ่าบอสได้สุ่มฟรีอีก 1 รอบ เฉพาะของดีที่เรทไม่เกิน 1% (การ์ด/ของแรร์) ขึ้นข้อความ [Boss Room] ดรอปโบนัส</li>
       <li>ในห้องทุก 3 วินาที เสีย HP 6% (ไม่ตาย) ติด Critical Wound และมีโอกาสติด Silence / Stun</li>
       <li>ดรอปพิเศษ: Cash Coin เหรียญ 10 (1%) · Cash Coin เหรียญ 100 (0.01%)</li>
     </ul>
     <div class="warn">⚠️ ต้อง <b>จุติ 20 รอบขึ้นไป</b> ถึงจะทำดาเมจบอสในห้องนี้ได้</div>
     </section>
+
 
     <section data-s>
     <h2 id="etower">🗼 ดัน 100 ชั้น (Endless Tower)<a class="hash" href="#etower">#</a></h2>
@@ -1414,6 +1510,15 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);color:v
     <ul>
       <li><b>แร่ ปรุงยา สัตว์เลี้ยง</b> <span class="loc">morocc 147,102</span> — แร่ตีอาวุธ · ของปรุงยา · อาหารสัตว์เลี้ยง</li>
       <li><b>ร้านอุปกรณ์เริ่มต้น</b> <span class="loc">morocc 144,101</span> — เกราะและอาวุธพื้นฐานทุกสาย</li>
+    </ul>
+    </section>
+
+    <section data-s>
+    <h2 id="gumshop">🍬 Gum Shop<a class="hash" href="#gumshop">#</a></h2>
+    <p><span class="loc">morocc 128,105</span> ขายกัมสุ่มบัฟ <b>1–300%</b> นาน 30 นาที ชิ้นละ <b>1,000,000z</b></p>
+    <ul>
+      <li>Drop Gum (สุ่ม Drop) · EXP Gum (สุ่ม EXP)</li>
+      <li>ซื้อได้ <b>อย่างละ 1 ชิ้นต่อวันต่อไอดี</b> รีเซ็ต 07:00</li>
     </ul>
     </section>
 
